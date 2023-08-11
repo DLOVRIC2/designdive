@@ -12,7 +12,7 @@ class ReplicateObjectGenerator:
         self.root_dir = os.path.dirname(self.current_file)
         self.temp_dir = os.path.join(self.current_file, "blender/objects_3d/temp")
         self.user_gen_dir = os.path.join(self.current_file, "blender/objects_3d/user_generated")
-        self.blender_dir = os.path.join(self.current_file, "blender")
+        self.blender_dir = os.path.join(self.current_file, "blender/objects_3d")
         load_dotenv(self.root_dir)
         self.generated_objects = {}
 
@@ -32,7 +32,6 @@ class ReplicateObjectGenerator:
             print(f"{file_path} downloaded")
         else:
             print(f"Failed to download {file_path}")
-
 
     def _generate_object(self, prompt):
         return replicate.run(
