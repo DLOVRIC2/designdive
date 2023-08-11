@@ -1,5 +1,2 @@
-
-
-
 def loadBlendERTemplate():
     print("aa")

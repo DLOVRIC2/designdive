@@ -6,7 +6,10 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 # Copy your Python script into the container
-COPY . .
+COPY test.py /test.py
+
+# Copy the objectConfigurator folder into the container
+COPY objectConfigurator /objectConfigurator
 
 # Run Blender's Python interpreter on your script
 ENTRYPOINT ["blender", "--background", "--python", "/test.py"]

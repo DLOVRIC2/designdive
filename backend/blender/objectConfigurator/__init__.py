@@ -1,0 +1,1 @@
+from objectConfigurator.loadBlenderTemplate import loadBlendERTemplate
