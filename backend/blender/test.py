@@ -1,4 +1,8 @@
 import bpy
 
 print("Hello, World!")
-print("aa")
+
+
+from objectConfigurator.loadBlenderTemplate import loadBlendERTemplate
+
+loadBlendERTemplate()
