@@ -2,9 +2,9 @@ import bpy
 import sys
 sys.path.append("/")
 
-from objectConfigurator.loadBlenderTemplate import loadBlendERTemplate
+from objectConfigurator.loadBlenderTemplate import openBlenderTemplateFile
 
 
-print("Hello, World!")
 
-loadBlendERTemplate()
+
+openBlenderTemplateFile()
