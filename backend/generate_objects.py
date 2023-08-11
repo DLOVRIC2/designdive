@@ -13,7 +13,7 @@ class ReplicateObjectGenerator:
         self.temp_dir = os.path.join(self.current_file, "blender/objects_3d/temp")
         self.user_gen_dir = os.path.join(self.current_file, "blender/objects_3d/user_generated")
         self.blender_dir = os.path.join(self.current_file, "blender/objects_3d")
-        load_dotenv(self.root_dir)
+        load_dotenv(os.path.join(self.root_dir, ".env"))
         self.generated_objects = {}
 
         self.replicate_api_key = os.environ.get("REPLICATE_API_PROFILE")
@@ -71,8 +71,9 @@ class ReplicateObjectGenerator:
 
 # Usage example
 generator = ReplicateObjectGenerator()
-fixed_objects = ["lamp", "rug", "television", "mirror", "plant", "clock", "cabinet", "fireplace"]
+fixed_objects = ["lamp"]
+# fixed_objects = ["lamp", "rug", "television", "mirror", "plant", "clock", "cabinet", "fireplace"]
 user_object = ["A chair that looks like an avocado"]
 
 generator.generate_temp_files(fixed_objects)
-generator.generate_user_files(user_object)
+# generator.generate_user_files(user_object)
