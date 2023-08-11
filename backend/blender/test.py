@@ -2,7 +2,7 @@ import bpy
 import sys
 sys.path.append("/")
 
-from objectConfigurator.loadBlenderTemplate import openBlenderTemplateFile
+from objectConfigurator.blenderManipulation import openBlenderTemplateFile
 
 
 

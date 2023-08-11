@@ -1,1 +1,1 @@
-from objectConfigurator.loadBlenderTemplate import openBlenderTemplateFile
+from objectConfigurator.blenderManipulation import openBlenderTemplateFile
