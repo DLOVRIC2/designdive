@@ -6,7 +6,7 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 # Copy your Python script into the container
-COPY test.py /test.py
+COPY . .
 
 # Run Blender's Python interpreter on your script
 ENTRYPOINT ["blender", "--background", "--python", "/test.py"]
