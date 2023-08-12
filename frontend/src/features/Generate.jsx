@@ -29,19 +29,19 @@ const Generate = () => {
             <div className={`scene-box ${selectedScene === 1 ? 'selected' : ''}`} onClick={() => handleSceneSelection(1)}>
             <img src={img1} alt='Scene 1' />
             </div>
-            <div>- Scene 1: Living Room</div>
+            <div className='scene-text'>Scene 1: Living Room</div>
         </div>
         <div className="scene">
             <div className={`scene-box ${selectedScene === 2 ? 'selected' : ''}`} onClick={() => handleSceneSelection(2)}>
             <img src={img2} alt='Scene 2' />
             </div>
-            <div>- Scene 2: Bedroom</div>
+            <div className='scene-text'>Scene 2: Bedroom</div>
         </div>
         <div className="scene">
             <div className={`scene-box ${selectedScene === 3 ? 'selected' : ''}`} onClick={() => handleSceneSelection(3)}>
             <img src={img3} alt='Scene 3' />
             </div>
-            <div>- Scene 3: Office Space</div>
+            <div className='scene-text'>Scene 3: Office Space</div>
         </div>
     </div>
 
