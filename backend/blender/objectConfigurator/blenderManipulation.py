@@ -18,9 +18,6 @@ def openBlenderTemplateFile(roomCategory):
         bpy.ops.wm.open_mainfile(filepath="objectConfigurator/templateFile_singleObject.blend")
         return "singleObject"
 
-    for ob in bpy.data.objects:
-        print(ob.name)
-    
 
 #this function simply imports obj file from temp(currentlyTest) directory
 def importObj():
@@ -28,10 +25,15 @@ def importObj():
     return "chair_0000.obj"
 
 def fixTranslationRotation(objectName):
-    objectName = objectName[-4]
+    objectName = objectName[:-4]
     for ob in bpy.data.objects:
+        print(ob.name)
         if ob.name == objectName:
             ob.rotation_euler = (0,0,0)
+            ob.location[2] = ob.dimensions.z/2
+            
+
+
 
 
 def renderCamera():
