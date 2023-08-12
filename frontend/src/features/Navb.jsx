@@ -9,7 +9,7 @@ const Navb = () => {
     <div>
       <Navbar bg="light" variant="light" expand="lg">
         <Container>
-          <Navbar.Brand href="#home" className="logo">Designdive</Navbar.Brand>
+          <Navbar.Brand href="/" className="logo">Designdive</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="ms-auto"> {/* This class aligns items to the right */}
