@@ -1,13 +1,11 @@
-// import logo from './logo.svg';
-// import './App.css';
-// import  Nav  from 'react-bootstrap';
+import React from "react";
+import Home from "./features/Home";
+function App() {
+  return (
+    <div className="App">
+      <Home/>
+    </div>
+  );
+}
 
-// function App() {
-//   return (
-//     <div className="App">
-//       <Nav/>
-//     </div>
-//   );
-// }
-
-// export default App;
+export default App;
