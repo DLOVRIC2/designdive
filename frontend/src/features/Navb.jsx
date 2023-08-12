@@ -16,6 +16,7 @@ const Navb = () => {
               <Nav.Link href="#features">Features</Nav.Link>
               <Nav.Link href="#home">Contact</Nav.Link>
               <Nav.Link href="#pricing">Pricing</Nav.Link>
+              <Nav.Link href="/generate">Generate</Nav.Link>
             </Nav>
             <div className="header-btn"> {/* This class aligns items to the right */}
               <a
