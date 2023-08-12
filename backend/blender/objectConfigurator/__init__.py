@@ -1,1 +1,1 @@
-from objectConfigurator.blenderManipulation import openBlenderTemplateFile, importObj
+from objectConfigurator.blenderManipulation import openBlenderTemplateFile, importObj, renderCamera
