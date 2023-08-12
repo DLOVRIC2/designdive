@@ -1,0 +1,92 @@
+.generate-container {
+    padding: 20px;
+    text-align: center;
+  }
+
+.gradient-paragraph {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    margin: 20px 0;
+    background: linear-gradient(95deg, var(--color-primary) 15%, var(--color-tertiary) 45%, var(--color-pink) 75%, var(--color-secondary) 100%) 98%/200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+.gradient-text {
+    background: linear-gradient(95deg, var(--color-primary) 15%, var(--color-tertiary) 45%, var(--color-pink) 75%, var(--color-secondary) 100%) 98%/200% 100%;
+    text-transform: capitalize;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  
+  
+  
+.underline-link {
+text-decoration: underline;
+}
+
+.scene {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+
+.scene-selection {
+display: flex;
+justify-content: space-between;
+margin: 20px 0;
+}
+
+.scene-box {
+    width: 300px; /* Increase the width */
+    height: 300px; /* Increase the height */
+    border: 2px solid var(--color-primary);
+    padding: 0; /* Removed padding */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    border-radius: 10px;
+  }
+  
+.scene-box img {
+width: 100%;
+height: 100%; /* Updated to fill the entire box */
+border-radius: 10px; /* Optional, to round the corners */
+}
+  
+.scene-box.selected {
+background-color: var(--color-primary);
+color: white;
+border: 3px solid var(--color-primary); /* Add a border when selected */
+
+}
+
+.scene-description {
+margin: 20px 0;
+}
+
+.scene-selected {
+font-weight: bold;
+}
+
+.generate-container p {
+    font-size: 18px; /* Adjust as needed */
+    font-weight: bold; /* Adjust as needed */
+    text-align: center; /* Optional, to center the text */
+    margin: 20px 0; /* Optional, to add some spacing */
+  }
+  
+.underline-link {
+text-decoration: underline;
+color: var(--color-primary); /* Optional, to use the primary color */
+}
+
+
