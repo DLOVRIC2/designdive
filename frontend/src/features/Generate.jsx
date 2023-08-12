@@ -40,8 +40,30 @@ const Generate = () => {
 
   const [isGenerated, setIsGenerated] = useState(false);
 
-  const handleGenerateClick = () => {
-    setIsGenerated(true);
+  const handleGenerateClick = async () => {
+    const promptValue = promptText; // Or whatever value you want to send as the prompt
+    try {
+      const response = await fetch('http://backend:8000/start_task/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ prompt: promptValue }),
+      });
+      const result = await response.json();
+      if (result.status === 'success') {
+        // Save the task ID if you need it for later, e.g., to check the task's status
+        const taskId = result.task_id;
+        setIsGenerated(true);
+        // You might also want to start polling the task status endpoint to get updates on the task
+      } else {
+        // Handle any error from the server
+        console.error('Error starting task', result);
+      }
+    } catch (error) {
+      // Handle any network error
+      console.error('Error making request to start task', error);
+    }
   };
 
 
