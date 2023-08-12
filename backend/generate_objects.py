@@ -91,8 +91,7 @@ class ReplicateObjectGenerator:
 
 # Usage example
 generator = ReplicateObjectGenerator()
-fixed_objects = ["lamp"]
-# fixed_objects = ["lamp", "rug", "television", "mirror", "plant", "clock", "cabinet", "fireplace"]
+fixed_objects = ["lamp", "rug", "television", "mirror", "plant", "clock", "cabinet", "fireplace"]
 user_object = ["A chair that looks like an avocado"]
 
 generator.generate_temp_files(fixed_objects)
