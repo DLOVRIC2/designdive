@@ -23,7 +23,7 @@ class ReplicateObjectGenerator:
             os.environ["REPLICATE_API_TOKEN"] = self.replicate_api_key
 
 
-    def _download_obj_file(self, url, file_path):
+    def _download_obj_file(self, url: str, file_path: str):
         """Download processed objects."""
         response = requests.get(url)
         if response.status_code == 200:
@@ -33,13 +33,14 @@ class ReplicateObjectGenerator:
         else:
             print(f"Failed to download {file_path}")
 
-    def _generate_object(self, prompt):
+    def _generate_object(self, prompt: str) -> List:
+        """Calls replicate API to generate .gif and .obj"""
         return replicate.run(
             "cjwbw/shap-e:5957069d5c509126a73c7cb68abcddbb985aeefa4d318e7c63ec1352ce6da68c",
             input={"prompt": prompt, "save_mesh": True}
         )
 
-    def _process_object(self, item, save_path):
+    def _process_object(self, item: str, save_path: str):
         output = self._generate_object(item)
         self.generated_objects[item] = {"gif": output[0], "obj": output[1]}
         print(f"{item} has been generated!")
@@ -49,11 +50,22 @@ class ReplicateObjectGenerator:
         obj_file_path = os.path.join(save_path, obj_file_name)
         self._download_obj_file(output[1], obj_file_path)
 
-    def generate_temp_files(self, objects):
+    def generate_temp_files(self, objects: List[str]):
+        """Generates temp files that will be used to render an initial scene in blender."""
+        json_file_path = os.path.join(self.blender_dir, "generated_objects.json")
+
+        if os.path.exists(json_file_path):
+            with open(json_file_path, "r") as json_file:
+                existing_data = json.load(json_file)
+                # Update the generate objects dictionary
+                self.generated_objects.update(existing_data)
+        
         for item in objects:
+            if item in self.generated_objects:
+                print(f"{item} already exists in teh JSON file. Skipping.")
+                continue
             self._process_object(item, save_path=self.temp_dir)
 
-        json_file_path = os.path.join(self.blender_dir, "generated_objects.json")
         with open(json_file_path, "w") as json_file:
             json.dump(self.generated_objects, json_file, indent=4)
 
