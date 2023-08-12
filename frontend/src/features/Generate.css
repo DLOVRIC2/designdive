@@ -4,14 +4,10 @@
   }
 
 .gradient-paragraph {
-    font-size: 18px;
+    font-size: 26px;
     font-weight: bold;
     text-align: center;
     margin: 20px 0;
-    background: linear-gradient(95deg, var(--color-primary) 15%, var(--color-tertiary) 45%, var(--color-pink) 75%, var(--color-secondary) 100%) 98%/200% 100%;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
   }
 
 .gradient-text {
@@ -38,10 +34,11 @@ text-decoration: underline;
   
 
 .scene-selection {
-display: flex;
-justify-content: space-between;
-margin: 20px 0;
-gap: 20px;
+    font-size: 18px;
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+    gap: 20px;
 }
 
 .scene-box {
@@ -78,20 +75,36 @@ margin: 20px 0;
 }
 
 .scene-selected {
-font-weight: bold;
-
-}
-
+    font-size: 24px; /* Adjust the font size as needed */
+    display: flex;
+    align-items: center;
+  }
+  
+.selected-label {
+    font-weight: bold;
+    }
+  
+.selected-scene {
+    font-weight: bold;
+    background: linear-gradient(95deg, var(--color-primary) 15%, var(--color-tertiary) 45%, var(--color-pink) 75%, var(--color-secondary) 100%) 98%/200% 100%;
+    text-transform: capitalize;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-left: 10px; /* Adjust margin as needed */
+    font-size: 24px; /* Adjust the font size as needed */
+  }
+  
 .scene-text {
-font-size: 18px;
-font-weight: bold;
-text-align: left;
-margin: 20px 0;
-background: linear-gradient(95deg, var(--color-primary) 15%, var(--color-tertiary) 45%, var(--color-pink) 75%, var(--color-secondary) 100%) 98%/200% 100%;
--webkit-background-clip: text;
-background-clip: text;
--webkit-text-fill-color: transparent;
-}
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    margin: 20px 0;
+    background: linear-gradient(95deg, var(--color-primary) 15%, var(--color-tertiary) 45%, var(--color-pink) 75%, var(--color-secondary) 100%) 98%/200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    }
 
 .generate-container p {
     font-size: 18px; /* Adjust as needed */
