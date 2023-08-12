@@ -4,8 +4,20 @@ import sys
 sys.path.append("/")
 
 #this function opens blender file loaded on repository which will serve as configurator
-def openBlenderTemplateFile():
-    bpy.ops.wm.open_mainfile(filepath="objectConfigurator/templateFile_livingRoom.blend")
+def openBlenderTemplateFile(roomCategory):
+    if roomCategory == "bedroom":
+        bpy.ops.wm.open_mainfile(filepath="objectConfigurator/templateFile_bedroom.blend")
+        return "bedroom"
+    elif roomCategory == "livingroom":
+        bpy.ops.wm.open_mainfile(filepath="objectConfigurator/templateFile_livingRoom.blend")
+        return "livingRoom"
+    elif roomCategory == "office":
+        bpy.ops.wm.open_mainfile(filepath="objectConfigurator/templateFile_office.blend")
+        return "office"
+    elif roomCategory == "singleObject":
+        bpy.ops.wm.open_mainfile(filepath="objectConfigurator/templateFile_singleObject.blend")
+        return "singleObject"
+
     for ob in bpy.data.objects:
         print(ob.name)
     
@@ -24,7 +36,7 @@ def renderCamera():
     bpy.context.scene.render.image_settings.file_format = "PNG"
 
     print("1")
-    bpy.context.scene.render.filepath = 'final_user_output/test.png'
+    bpy.context.scene.render.filepath = '/final_user_output/test.png'
     bpy.ops.render.render(write_still=True)
     print("a")
    

@@ -7,7 +7,7 @@ from objectConfigurator.blenderManipulation import openBlenderTemplateFile, rend
 
 
 
-openBlenderTemplateFile()
+openBlenderTemplateFile("singleObject")
 renderCamera()
 
 
