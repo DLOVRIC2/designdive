@@ -9,9 +9,18 @@ import img3 from '../images/img3.png';
 const Generate = () => {
   // Default selection set to 1
   const [selectedScene, setSelectedScene] = useState(1);
+  const [selectedItem, setSelectedItem] = useState(null);
+  const [showPromptInput, setShowPromptInput] = useState(false);
+  const [promptText, setPromptText] = useState('');
 
   const handleSceneSelection = (scene) => {
     setSelectedScene(scene);
+    setSelectedItem(null); // Reset selected item when scene changes
+  };
+
+  const handleItemClick = (item) => {
+    setSelectedItem(item);
+    setShowPromptInput(true);
   };
 
   const SCENE_NAMES = {
@@ -20,7 +29,21 @@ const Generate = () => {
     3: "Office Space",
   };
 
+  const SCENE_ITEMS = {
+    "Living Room": ["Sofa", "Fireplace", "Table", "Lamp"],
+    "Bedroom": ["Bed", "Nightstand", "Lamp", "Closet"],
+    "Office Space": ["Desk", "Chair", "Bookshelf", "Plant"],
+  };
+
   const selectedSceneName = SCENE_NAMES[selectedScene] || '-';
+  const items = SCENE_ITEMS[selectedSceneName] || [];
+
+  const [isGenerated, setIsGenerated] = useState(false);
+
+  const handleGenerateClick = () => {
+    setIsGenerated(true);
+  };
+
 
   return (
     <div className="container generate-container">
@@ -58,6 +81,47 @@ const Generate = () => {
             <span className="selected-scene">{selectedSceneName}</span>
         </div>
 
+        <h4>What would you like to redesign?</h4>
+        <div className="items-container">
+          {items.map((item) => (
+            <button
+              key={item}
+              className={`item-button ${selectedItem === item ? 'selected' : ''}`}
+              onClick={() => handleItemClick(item)}
+            >
+              {item}
+            </button>
+          ))}
+        </div>
+
+        {showPromptInput && (
+          <div className="prompt-container">
+            <label htmlFor="prompt-input">Enter your prompt:</label>
+            <input
+              type="text"
+              id="prompt-input"
+              value={promptText}
+              onChange={(e) => setPromptText(e.target.value)}
+              placeholder="Enter your prompt..."
+            />
+          </div>
+        )}
+
+        <button className="generate-button" onClick={handleGenerateClick}>
+          Generate
+        </button>
+
+        {isGenerated && (
+        <div className="generated-section">
+            <div className="generated-image-container">
+            <img src={img1} alt="Generated Preview" />
+            </div>
+            <button className="download-button">Download</button>
+        </div>
+        )}
+
+        <div className="empty-space"></div>
+        
     </div>
   );
 };
