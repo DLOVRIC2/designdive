@@ -14,16 +14,21 @@ def openBlenderTemplateFile():
 def importObj():
     bpy.ops.import_scene.obj(filepath="objects_3d/temp/chair_0000.obj")
 
+
 def renderCamera():
-    for scene in bpy.data.scenes:
-        scene.render.engine = 'BLENDER_WORKBENCH'
-    bpy.context.scene.render.engine = 'BLENDER_WORKBENCH'
+    # Set render engine to CYCLES
     bpy.context.scene.render.engine = 'CYCLES'
-    print("1")
+
+    # Set the path where the rendered image will be saved
+    bpy.context.scene.render.filepath = "/final_user_output/untitled.png"
+
+    # Set the image file format
+    bpy.context.scene.render.image_settings.file_format = 'PNG'
+
+    # Start rendering
     bpy.ops.render.render(write_still=True)
-    print("a")
-    bpy.ops.image.save_as(save_as_render=True, copy=True, filepath="final_user_output/untitled.png")
-    print("b")
+
+
 
 
 
