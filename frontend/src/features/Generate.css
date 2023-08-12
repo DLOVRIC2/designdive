@@ -119,3 +119,77 @@ color: var(--color-primary); /* Optional, to use the primary color */
 }
 
 
+
+.items-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px 0;
+  }
+  
+  .item-button {
+    background-color: #f0f0f0;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .item-button.selected {
+    background-color: #e0e0e0;
+  }
+  
+  .prompt-container {
+    margin-top: 20px;
+  }
+  
+
+
+  /* When the user clicks generate, we have a split screen */
+
+.generate-button {
+display: block;
+margin: 20px auto;
+padding: 10px 20px;
+background-color: #007bff;
+color: #ffffff;
+border: none;
+cursor: pointer;
+transition: background-color 0.3s;
+}
+
+.generate-button:hover {
+background-color: #0056b3;
+}
+
+.generated-section {
+display: flex;
+flex-direction: column;
+align-items: center;
+margin-top: 20px;
+}
+
+.generated-image-container img {
+max-width: 100%;
+max-height: 100%;
+display: block;
+margin: 0 auto;
+}
+
+.download-button {
+padding: 10px 20px;
+background-color: #a72881;
+color: #ffffff;
+border: none;
+cursor: pointer;
+transition: background-color 0.3s;
+margin-top: 10px; /* Adjust the margin as needed */
+}
+
+.download-button:hover {
+background-color: #882169;
+}
+
+.empty-space {
+height: 100px; /* Adjust the height as needed for the desired space */
+}
