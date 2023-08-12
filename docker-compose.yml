@@ -1,10 +1,10 @@
-# docker-compose.yml
 version: '3.8'
 
 services:
   frontend:
-    build: ./frontend
-    dockerfile: Dockerfile
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
     ports:
       - "3000:3000"
     depends_on:
@@ -18,6 +18,9 @@ services:
       - "8000:8000"
     networks:
       - mynetwork
+    environment:
+    # TODO: Replace this with dockersecrets or something
+      - REPLICATE_API_PROFILE="yorkey"
 
 networks:
   mynetwork:
