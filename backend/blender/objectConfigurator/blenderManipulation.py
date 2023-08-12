@@ -5,7 +5,7 @@ sys.path.append("/")
 
 #this function opens blender file loaded on repository which will serve as configurator
 def openBlenderTemplateFile():
-    bpy.ops.wm.open_mainfile(filepath="objectConfigurator/templateFile.blend")
+    bpy.ops.wm.open_mainfile(filepath="objectConfigurator/templateFile_livingRoom.blend")
     for ob in bpy.data.objects:
         print(ob.name)
     
