@@ -16,17 +16,23 @@ def importObj():
 
 
 def renderCamera():
-    # Set render engine to CYCLES
-    bpy.context.scene.render.engine = 'CYCLES'
+    for scene in bpy.data.scenes:
+        scene.render.engine = 'CYCLES'
+    
+    bpy.context.scene.render.resolution_x = 1920
+    bpy.context.scene.render.resolution_y = 1080
+    bpy.context.scene.render.image_settings.file_format = "PNG"
 
-    # Set the path where the rendered image will be saved
-    bpy.context.scene.render.filepath = "/final_user_output/untitled.png"
-
-    # Set the image file format
-    bpy.context.scene.render.image_settings.file_format = 'PNG'
-
-    # Start rendering
+    print("1")
+    bpy.context.scene.render.filepath = 'final_user_output/test.png'
     bpy.ops.render.render(write_still=True)
+    print("a")
+   
+   
+
+
+    #bpy.ops.image.save_as(save_as_render=True, copy=True, filepath="final_user_output/untitled.png")
+    print("b")
 
 
 
