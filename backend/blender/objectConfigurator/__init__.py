@@ -1,1 +1,3 @@
 from objectConfigurator.blenderManipulation import openBlenderTemplateFile, renderCamera
+
+from objectConfigurator.fileManipulation import getChairObject

@@ -20,25 +20,26 @@ def openBlenderTemplateFile(roomCategory):
 
 
 #this function simply imports obj file from temp(currentlyTest) directory
-def importObj():
-    bpy.ops.import_scene.obj(filepath="objects_3d/temp/chair_0000.obj")
-    return "chair_0000.obj"
+def importObj(filePath):
+    bpy.ops.import_scene.obj(filepath=filePath)
+    
 
 def fixTranslationRotation(objectName):
+    print(objectName)
     objectName = objectName[:-4]
     for ob in bpy.data.objects:
-        print(ob.name)
-        if ob.name == objectName:
+        if ob.name.startswith(objectName):
             ob.rotation_euler = (0,0,0)
             ob.location[2] = ob.dimensions.z/2
             
 
-
+def objectProcess(filePath, objectName):
+    importObj(filePath)
+    fixTranslationRotation(objectName)
+    print("*****processed*******")
 
 
 def renderCamera():
-    objectName = importObj()
-    fixTranslationRotation(objectName)
     for scene in bpy.data.scenes:
         scene.render.engine = 'CYCLES'
     
@@ -47,7 +48,7 @@ def renderCamera():
     bpy.context.scene.render.image_settings.file_format = "PNG"
 
     print("1")
-    bpy.context.scene.render.filepath = '/final_user_output/test.png'
+    bpy.context.scene.render.filepath = '/final_user_output/atest.png'
     bpy.ops.render.render(write_still=True)
     print("a")
    
