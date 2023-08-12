@@ -15,4 +15,4 @@ COPY . .
 EXPOSE 8000
 
 # Last step still to be determined
-CMD ["python3", "app.py"]
+CMD ["python3", "generate_objects.py"]
