@@ -1,0 +1,166 @@
+:root {
+  --color-primary: #059DFF;
+  --color-tertiary: #6549D5;
+  --color-pink: #E33FA1;
+  --color-secondary: #FB5343;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(135deg, #e8f5e9 0%, #e8f5e9 25%, transparent 25%, transparent 75%, #e8f5e9 75%, #e8f5e9 100%),
+            linear-gradient(-45deg, #f3dbe3 0%, #f3dbe3 25%, transparent 25%, transparent 75%, #f3dbe3 75%, #f3dbe3 100%),
+            linear-gradient(to left, #f3dbe3, #ffffff, #caedfd); /* Gradient on the sides */
+background-blend-mode: normal, normal, normal, multiply; /* Apply blending mode for gradient overlap */
+
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+.logo{
+
+  background: linear-gradient(95deg, var(--color-primary) 15%, var(--color-tertiary) 45%, var(--color-pink) 75%, var(--color-secondary) 100%) 98%/200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+         
+.btn-grad {
+  background-image: linear-gradient(to right, #7948cd, #fb5343,#f24c69);
+  margin: 15px;
+  padding: 9px 17px;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: background-position 0.5s, color 0.5s; /* Added background-position to the transition */
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 20px #eee;
+  border-radius: 20px;
+  display: inline-block; /* Changed from "block" to "inline-block" to prevent full width */
+  font-size: x-small;
+}
+
+.btn-grad:hover {
+  background-image: linear-gradient(to right, hsl(262, 57%, 54%), hsl(5, 96%, 62%));
+  background-position: 100% center; /* Move the background gradient fully to the right on hover */
+  color: #fff;
+  text-decoration: none;
+}
+
+.footer {
+  background-color: #f8f9fa;
+  padding: 30px 0;
+}
+
+.social-icons {
+  margin-bottom: 20px;
+}
+
+.icon {
+  font-size: 24px;
+  color: #333;
+  margin: 0 10px;
+  border-radius: 50%;
+  padding: 10px;
+  background-color: #fff;
+  transition: border-color 0.3s ease-in-out, transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+.icon:hover {
+  background: linear-gradient(to right, hsl(262, 57%, 54%), hsl(5, 96%, 62%));
+  transform: scale(1.1); /* Increase size */
+}
+
+.icon:hover,
+.icon:focus {
+  outline: none; /* Remove outline on focus (for accessibility) */
+}
+
+.icon:focus {
+  background-color: #007bff;
+}
+
+.icon:focus:not(:focus-visible) {
+  background-color: #fff; /* Keep original background on unfocused */
+}
+*{
+  margin: 0%;
+  padding: 0%;
+}
+
+.copyright {
+  color: #666;
+}
+
+.contact-pricing-row {
+  display: flex;
+  justify-content: flex-start; /* Align links at the start */
+  align-items: center;
+  margin-top: 20px;
+  overflow-x: hidden;
+}
+
+.contact,
+.pricing {
+  padding: 0 10px; /* Add some spacing between the links */
+}
+
+.contact-link,
+.pricing-link {
+  text-decoration: none;
+  color: #333;
+  position: relative;
+  transition: color 0.3s ease-in-out;
+}
+
+.contact-link::before,
+.pricing-link::before {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #3b90eb;
+  transition: width 0.3s ease-in-out;
+}
+
+.contact-link:hover,
+.pricing-link:hover {
+  color: #2e81da;
+}
+
+.contact-link:hover::before,
+.pricing-link:hover::before {
+  width: 100%;
+}
+.divider {
+  width: 1px;
+  height: 12px; /* Adjust the height of the divider */
+  background-color: #ccc; /* Divider color */
+  margin: 0 10px; /* Adjust spacing around the divider */
+}
+
+.title {
+  font-size: 55px;
+  margin-top: 55px;
+  margin-bottom: 30px;
+  color: #333;
+  font-weight: bold;
+}
+
+.gradient-text {
+  background: linear-gradient(95deg, var(--color-primary) 15%, var(--color-tertiary) 45%, var(--color-pink) 75%, var(--color-secondary) 100%) 98%/200% 100%;
+  text-transform: capitalize;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
