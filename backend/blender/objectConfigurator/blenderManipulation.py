@@ -3,7 +3,7 @@ import bpy
 import sys
 sys.path.append("/")
 
-#this function opens blender file loaded on repository which will serve as configurator
+#this function takes argument defined by user which opens specific blender file according to user needs 
 def openBlenderTemplateFile(roomCategory):
     if roomCategory == "bedroom":
         bpy.ops.wm.open_mainfile(filepath="objectConfigurator/templateFile_bedroom.blend")
@@ -25,9 +25,18 @@ def openBlenderTemplateFile(roomCategory):
 #this function simply imports obj file from temp(currentlyTest) directory
 def importObj():
     bpy.ops.import_scene.obj(filepath="objects_3d/temp/chair_0000.obj")
+    return "chair_0000.obj"
+
+def fixTranslationRotation(objectName):
+    objectName = objectName[-4]
+    for ob in bpy.data.objects:
+        if ob.name == objectName:
+            ob.rotation_euler = (0,0,0)
 
 
 def renderCamera():
+    objectName = importObj()
+    fixTranslationRotation(objectName)
     for scene in bpy.data.scenes:
         scene.render.engine = 'CYCLES'
     
