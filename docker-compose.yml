@@ -9,24 +9,15 @@ services:
       - "3000:3000"
     depends_on:
       - backend
+    networks:
+      - mynetwork
 
   backend:
     build: ./backend
     ports:
       - "8000:8000"
-    depends_on:
-      - db
+    networks:
+      - mynetwork
 
-  db:
-    image: "postgres:latest"
-    environment:
-      POSTGRES_DB: design_dive_db
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: password
-    volumes:
-      - db_data:/var/lib/postgresql/data
-    ports:
-      - "5432:5432"
-
-volumes:
-  db_data:
+networks:
+  mynetwork:
