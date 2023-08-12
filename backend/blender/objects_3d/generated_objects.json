@@ -2,5 +2,33 @@
     "lamp": {
         "gif": "https://pbxt.replicate.delivery/jxbKZJXtxjJqB1y8eLlRZffJfJe5A6f4U4fNatSeBV32eHMyiA/out_0.gif",
         "obj": "https://pbxt.replicate.delivery/I8Zj3fbAZJS1BCrrJfenbmfNJEsGCr8qeTO5HgayxrfvfBjsIA/mesh_0.obj"
+    },
+    "rug": {
+        "gif": "https://pbxt.replicate.delivery/NHDco95r8fzdVSBPh1sES4bVeSUYVReuaLbSij3lueNL28kFB/out_0.gif",
+        "obj": "https://pbxt.replicate.delivery/EeGOeGLaPzrwK0nlh2JL4yBQMpJLa9NKfZveRZb91jnJ28kFB/mesh_0.obj"
+    },
+    "television": {
+        "gif": "https://pbxt.replicate.delivery/c0YvJD8PEC6QAZVHQYN5rZ1fnG4PBiaQSkn7lRCx2U8SnnsIA/out_0.gif",
+        "obj": "https://pbxt.replicate.delivery/3m6xztAfC510Qiy7fp20m78h4XcGuL6bAbsXplPyqVhlOPZRA/mesh_0.obj"
+    },
+    "mirror": {
+        "gif": "https://pbxt.replicate.delivery/d6sukO3DjRp9CVhdumB3oI4CyhjCyzWFRkmvelUBtlp0nnsIA/out_0.gif",
+        "obj": "https://pbxt.replicate.delivery/6MXSXYoekLXAeUXM72Zsp18KdnwPEeiKKarBbZ17d8YTf8kFB/mesh_0.obj"
+    },
+    "plant": {
+        "gif": "https://pbxt.replicate.delivery/3czN0CtO5BLwHl6BRypiQ6ewtfhPe86gfXUMpsJEXLbyC9kFB/out_0.gif",
+        "obj": "https://pbxt.replicate.delivery/TMRHwzjXcTKuOhd6A016QNsfcXL2o4GkLdXs9hNL4rMWonsIA/mesh_0.obj"
+    },
+    "clock": {
+        "gif": "https://pbxt.replicate.delivery/dSVhe20eTmmgCEJc9L44WPTFe3NjSfF4b4Ie93NfWTSdc0TWE/out_0.gif",
+        "obj": "https://pbxt.replicate.delivery/IFjGDXmqaZ4iI1buruo05wHyFEOUvLykFDuLGWlOYwrc0TWE/mesh_0.obj"
+    },
+    "cabinet": {
+        "gif": "https://pbxt.replicate.delivery/X3TkNxrJSKITDBzy0V3a54bMs2sdpeR879TrWL2EAQocpnsIA/out_0.gif",
+        "obj": "https://pbxt.replicate.delivery/HjQjLdelZaUzA6oBDSdGBV7dIXLniorqNnB4GH9jDDYdpnsIA/mesh_0.obj"
+    },
+    "fireplace": {
+        "gif": "https://pbxt.replicate.delivery/srY2R7SVJS5rHJy4MzdRj5FWTsG5hDmRSrDkXreqN9CfTPZRA/out_0.gif",
+        "obj": "https://pbxt.replicate.delivery/3xNcY13fvx2QAawL6pCx7J2KrQLH6XAFfRAcTSDr0HGenekFB/mesh_0.obj"
     }
 }
