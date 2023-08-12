@@ -14,16 +14,24 @@ const Generate = () => {
     setSelectedScene(scene);
   };
 
+  const SCENE_NAMES = {
+    1: "Living Room",
+    2: "Bedroom",
+    3: "Office Space",
+  };
+
+  const selectedSceneName = SCENE_NAMES[selectedScene] || '-';
+
   return (
     <div className="container generate-container">
       <h1 className="title">
         Generate <span className="gradient-text">Your Design</span><br />
       </h1>
 
-      <p className="gradient-paragraph">
-        Please choose a scene to place your object or{' '}
+      <h3>
+        <strong>Please choose a scene to place your object or</strong>{' '}
         <Link to="/blank" className="underline-link">start a blank project</Link>.
-      </p>
+      </h3>
       <div className="scene-selection">
         <div className="scene">
             <div className={`scene-box ${selectedScene === 1 ? 'selected' : ''}`} onClick={() => handleSceneSelection(1)}>
@@ -45,7 +53,11 @@ const Generate = () => {
         </div>
     </div>
 
-      <div className="scene-selected">Selected: {`Scene ${selectedScene || '-'}`}</div>
+        <div className="scene-selected">
+            <span className="selected-label">Selected:</span>
+            <span className="selected-scene">{selectedSceneName}</span>
+        </div>
+
     </div>
   );
 };
