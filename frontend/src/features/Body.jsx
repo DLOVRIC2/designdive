@@ -19,18 +19,18 @@ const Body = () => {
         </div>
       </div>
       <div className="row justify-content-center align-items-center">
-        <div className="col-md-6 col-lg-6 ms-5">
-          <TextField id="link-field" label="Paste your link here"  fullWidth variant="outlined" />
+        <div className="col-md-6 col-lg-6 mb-3 mb-md-0">
+          <TextField id="link-field" label="Paste your link here" fullWidth variant="outlined" />
         </div>
         <div className="col-md-4 col-lg-2 mt-3 mt-md-0">
-          <Button variant="outlined" className='btn-grad text-light w-90  p-2 m-1 rounded'>
+          <Button variant="outlined" className='btn-grad text-light w-100 p-2 rounded'>
             Make clip <ArrowRight/>
           </Button>
         </div>
       </div>
       <div className='row justify-content-center mt-3'>
-        <div className='col-md-4 d-flex justify-content-center'>
-          <Button variant="outlined" className='btn-grad text-light w-40 rounded'>
+        <div className='col-md-4 text-center'>
+          <Button variant="outlined" className='btn-grad text-light w-10 rounded w-lg-50'>
             Load Demo
           </Button>
         </div>
