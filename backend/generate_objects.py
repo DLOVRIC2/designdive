@@ -4,6 +4,7 @@ import os
 import json
 import requests
 from typing import List
+import re
 
 class ReplicateObjectGenerator:
 
@@ -41,12 +42,17 @@ class ReplicateObjectGenerator:
         )
 
     def _process_object(self, item: str, save_path: str):
+        """Runs the api call to generate object and downloads the .obj file in a folder for blender processing"""
         output = self._generate_object(item)
-        self.generated_objects[item] = {"gif": output[0], "obj": output[1]}
-        print(f"{item} has been generated!")
         
+        # Create a valid file name
+        valid_name = re.sub(r'[^a-zA-Z0-9]', '_', item.lower())
 
-        obj_file_name = f"{item}.obj"
+        self.generated_objects[valid_name] = {"gif": output[0], "obj": output[1]}
+        print(f"{item} has been generated!")
+
+        # Save the file
+        obj_file_name = f"{valid_name}.obj"
         obj_file_path = os.path.join(save_path, obj_file_name)
         self._download_obj_file(output[1], obj_file_path)
 
@@ -71,7 +77,9 @@ class ReplicateObjectGenerator:
 
         print("Generated objects saved to", json_file_path)
 
+
     def generate_user_files(self, prompt):
+        """Generates an object """
         self._process_object(prompt, save_path=self.user_gen_dir)
 
         json_file_path = os.path.join(self.root_dir, "generated_objects.json")
