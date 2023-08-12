@@ -30,5 +30,9 @@
     "fireplace": {
         "gif": "https://pbxt.replicate.delivery/srY2R7SVJS5rHJy4MzdRj5FWTsG5hDmRSrDkXreqN9CfTPZRA/out_0.gif",
         "obj": "https://pbxt.replicate.delivery/3xNcY13fvx2QAawL6pCx7J2KrQLH6XAFfRAcTSDr0HGenekFB/mesh_0.obj"
+    },
+    "chair": {
+        "gif": "https://pbxt.replicate.delivery/eHd4u8WSrWS9EiJlLBhryGH2kQ7OTXS6u5cgen4OLKCU7RZRA/out_0.gif",
+        "obj": "https://pbxt.replicate.delivery/YGOzRTsPLqbef0XRZRs2q7utyRPe1QnhqyEOvYfTP8emaPKLC/mesh_0.obj"
     }
 }
