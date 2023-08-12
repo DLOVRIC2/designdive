@@ -33,6 +33,7 @@ text-decoration: underline;
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 0 10px; 
   }
   
 
@@ -40,12 +41,13 @@ text-decoration: underline;
 display: flex;
 justify-content: space-between;
 margin: 20px 0;
+gap: 20px;
 }
 
 .scene-box {
-    width: 300px; /* Increase the width */
-    height: 300px; /* Increase the height */
-    border: 2px solid var(--color-primary);
+    width: 450px; /* Increase the width */
+    height: 450px; /* Increase the height */
+    border: 6px solid var(--color-primary);
     padding: 0; /* Removed padding */
     display: flex;
     flex-direction: column;
@@ -54,6 +56,8 @@ margin: 20px 0;
     cursor: pointer;
     transition: all 0.3s;
     border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+
   }
   
 .scene-box img {
@@ -75,6 +79,18 @@ margin: 20px 0;
 
 .scene-selected {
 font-weight: bold;
+
+}
+
+.scene-text {
+font-size: 18px;
+font-weight: bold;
+text-align: left;
+margin: 20px 0;
+background: linear-gradient(95deg, var(--color-primary) 15%, var(--color-tertiary) 45%, var(--color-pink) 75%, var(--color-secondary) 100%) 98%/200% 100%;
+-webkit-background-clip: text;
+background-clip: text;
+-webkit-text-fill-color: transparent;
 }
 
 .generate-container p {
