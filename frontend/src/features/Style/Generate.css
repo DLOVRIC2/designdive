@@ -42,32 +42,29 @@ text-decoration: underline;
 }
 
 .scene-box {
-    width: 450px; /* Increase the width */
-    height: 450px; /* Increase the height */
-    border: 6px solid var(--color-primary);
-    padding: 0; /* Removed padding */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.3s;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-
-  }
-  
-.scene-box img {
-width: 100%;
-height: 100%; /* Updated to fill the entire box */
-border-radius: 10px; /* Optional, to round the corners */
+  position: relative; /* Needed for hover effect positioning */
+  overflow: hidden; /* Hide any overflowing content */
+  border-radius: 10px;
+  transition: transform 0.3s, box-shadow 0.3s, filter 0.3s;
 }
-  
-.scene-box.selected {
-background-color: var(--color-primary);
-color: white;
-border: 3px solid var(--color-primary); /* Add a border when selected */
 
+.scene-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+  transition: transform 0.3s;
+}
+
+.scene-box:hover {
+  transform: scale(1.07); 
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); 
+  filter: brightness(1.1);
+}
+
+.scene-box.selected {
+  transform: scale(1); 
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.0); 
+  filter: brightness(1); 
 }
 
 .scene-description {
@@ -75,7 +72,7 @@ margin: 20px 0;
 }
 
 .scene-selected {
-    font-size: 24px; /* Adjust the font size as needed */
+    font-size: 24px; 
     display: flex;
     align-items: center;
   }
@@ -85,15 +82,20 @@ margin: 20px 0;
     }
   
 .selected-scene {
-    font-weight: bold;
-    background: linear-gradient(95deg, var(--color-primary) 15%, var(--color-tertiary) 45%, var(--color-pink) 75%, var(--color-secondary) 100%) 98%/200% 100%;
-    text-transform: capitalize;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin-left: 10px; /* Adjust margin as needed */
-    font-size: 24px; /* Adjust the font size as needed */
+  
+    border: 3px solid linear-gradient(140deg, #059DFF, #6549D5, #E33FA1);; /* Example: yellow border for selection */
+  box-shadow: 0px 0px 10px rgba(255, 255, 0, 0.7);
+  background-color: #f5dced;
+  animation: bounce 0.5s ease infinite;
+  transition: border 0.3s, box-shadow 0.3s;
   }
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }}
   
 .scene-text {
     font-size: 18px;
@@ -107,15 +109,15 @@ margin: 20px 0;
     }
 
 .generate-container p {
-    font-size: 18px; /* Adjust as needed */
-    font-weight: bold; /* Adjust as needed */
-    text-align: center; /* Optional, to center the text */
-    margin: 20px 0; /* Optional, to add some spacing */
+    font-size: 18px; 
+    font-weight: bold; 
+    text-align: center; 
+    margin: 20px 0; 
   }
   
 .underline-link {
 text-decoration: underline;
-color: var(--color-primary); /* Optional, to use the primary color */
+color: var(--color-primary); 
 }
 
 
@@ -128,11 +130,25 @@ color: var(--color-primary); /* Optional, to use the primary color */
   }
   
   .item-button {
-    background-color: #f0f0f0;
-    padding: 10px;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s;
+    background-image: linear-gradient(to right, #7948cd, #fb5343,#f24c69);
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: background-position 0.5s, color 0.5s; 
+    background-size: 200% auto;
+    color: white;
+    box-shadow: 0 0 20px #eee;
+    display: inline-block; 
+    border-radius: 10px;
+    font-size: large;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    padding: 0.6rem;
+  }
+  .item-button:hover{
+    background-image: linear-gradient(to right, hsl(262, 57%, 54%), hsl(5, 96%, 62%));
+    background-position: 100% center; 
+    color: #fff;
+    text-decoration: none;
   }
   
   .item-button.selected {
@@ -140,26 +156,42 @@ color: var(--color-primary); /* Optional, to use the primary color */
   }
   
   .prompt-container {
-    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
   
+  #prompt-input {
+    width: 100%; 
+    max-width: 300px; 
+    margin-bottom: 10px;
+  }
 
 
   /* When the user clicks generate, we have a split screen */
 
 .generate-button {
-display: block;
-margin: 20px auto;
-padding: 10px 20px;
-background-color: #007bff;
-color: #ffffff;
-border: none;
-cursor: pointer;
-transition: background-color 0.3s;
+  background-image: linear-gradient(to bottom, #7948cd, #fb5343,#f24c69);
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: background-position 0.5s, color 0.5s; 
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 20px #eee;
+  display: inline-block; 
+  border-radius: 10px;
+  font-size: large;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  padding: 0.6rem;
 }
 
 .generate-button:hover {
-background-color: #0056b3;
+  background-image: linear-gradient(to right, hsl(262, 57%, 54%), hsl(5, 96%, 62%));
+  background-position: 100% center; 
+  color: #fff;
+  text-decoration: none;
 }
 
 .generated-section {
@@ -183,7 +215,7 @@ color: #ffffff;
 border: none;
 cursor: pointer;
 transition: background-color 0.3s;
-margin-top: 10px; /* Adjust the margin as needed */
+margin-top: 10px; 
 }
 
 .download-button:hover {
@@ -191,7 +223,7 @@ background-color: #882169;
 }
 
 .empty-space {
-height: 100px; /* Adjust the height as needed for the desired space */
+height: 100px;
 }
 
 
