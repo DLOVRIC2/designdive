@@ -193,3 +193,23 @@ background-color: #882169;
 .empty-space {
 height: 100px; /* Adjust the height as needed for the desired space */
 }
+
+
+.fun-fact-container {
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+  font-style: italic;
+  text-align: center;
+  margin-top: 20px;
+}
+
+
+.loading-container {
+  height: 100px; /* or whatever height you want */
+  width: 100px; /* or whatever width you want */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
