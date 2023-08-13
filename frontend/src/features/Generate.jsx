@@ -12,15 +12,28 @@ const Generate = () => {
   const [selectedItem, setSelectedItem] = useState(null);
   const [showPromptInput, setShowPromptInput] = useState(false);
   const [promptText, setPromptText] = useState('');
+  const [prompts, setPrompts] = useState({}); // Object to store prompts for each item
+
 
   const handleSceneSelection = (scene) => {
     setSelectedScene(scene);
     setSelectedItem(null); // Reset selected item when scene changes
+    setPrompts({}); // Clear prompts when scene changes
   };
 
   const handleItemClick = (item) => {
     setSelectedItem(item);
     setShowPromptInput(true);
+  };
+
+  const handlePromptSubmit = () => {
+    // Add the current prompt to the prompts object
+    setPrompts({
+      ...prompts,
+      [selectedItem]: promptText,
+    });
+    // Clear the prompt input
+    setPromptText('');
   };
 
   const SCENE_NAMES = {
@@ -41,15 +54,16 @@ const Generate = () => {
   const [isGenerated, setIsGenerated] = useState(false);
 
   const handleGenerateClick = async () => {
-    const promptValue = promptText; // Or whatever value you want to send as the prompt
-    console.log('Starting request to generate with prompt:', promptValue);
+    const promptValues = Object.values(prompts); // Convert prompts object to an array
+
+    console.log('Starting request to generate with prompts:', promptValues);
     try {
-      const response = await fetch('http://backend:8000/start_task/', {
+      const response = await fetch('http://localhost:8000/start_task/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ prompt: promptValue }),
+        body: JSON.stringify(promptValues),
       });
       const result = await response.json();
       console.log('Received response from backend:', result);
@@ -120,7 +134,7 @@ const Generate = () => {
 
         {showPromptInput && (
           <div className="prompt-container">
-            <label htmlFor="prompt-input">Enter your prompt:</label>
+            <label htmlFor="prompt-input">Enter your prompt for {selectedItem}:</label>
             <input
               type="text"
               id="prompt-input"
@@ -128,11 +142,22 @@ const Generate = () => {
               onChange={(e) => setPromptText(e.target.value)}
               placeholder="Enter your prompt..."
             />
+            <button onClick={handlePromptSubmit}>Enter</button>
             <button className="generate-button" onClick={handleGenerateClick}>
-             Generate
+              Generate
             </button>
           </div>
         )}
+
+        <div className="selected-prompts">
+          <h4>Selected Prompts:</h4>
+          {Object.entries(prompts).map(([item, prompt], index) => (
+            <div key={index} className="prompt-item">
+              <span>{item}: </span>
+              <span>{prompt}</span>
+            </div>
+          ))}
+        </div>
 
         {isGenerated && (
         <div className="generated-section">
