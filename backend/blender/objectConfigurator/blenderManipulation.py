@@ -1,21 +1,33 @@
 import bpy 
 from objectConfigurator.fileManipulation import solveUserGenerated, solvePregenerated
 import sys
-sys.path.append("/")
+import os
+sys.path.append(os.path.dirname(__file__))
+
+blend_paths = {
+    "bedroom": os.path.join(os.path.dirname(__file__), "templateFile_bedroom.blend"),
+    "livingroom": os.path.join(os.path.dirname(__file__), "templateFile_livingRoom.blend"),
+    "office": os.path.join(os.path.dirname(__file__), "templateFile_office.blend"),
+    "singleObject": os.path.join(os.path.dirname(__file__), "templateFile_singleObject.blend"),
+}
+
+import logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 #this function takes argument defined by user which opens specific blender file according to user needs 
 def openBlenderTemplateFile(roomCategory):
     if roomCategory == "bedroom":
-        bpy.ops.wm.open_mainfile(filepath="objectConfigurator/templateFile_bedroom.blend")
+        bpy.ops.wm.open_mainfile(filepath=blend_paths["bedroom"])
         return "bedroom"
     elif roomCategory == "livingroom":
-        bpy.ops.wm.open_mainfile(filepath="objectConfigurator/templateFile_livingRoom.blend")
+        bpy.ops.wm.open_mainfile(filepath=blend_paths["livingroom"])
         return "livingRoom"
     elif roomCategory == "office":
-        bpy.ops.wm.open_mainfile(filepath="objectConfigurator/templateFile_office.blend")
+        bpy.ops.wm.open_mainfile(filepath=blend_paths["office"])
         return "office"
     elif roomCategory == "singleObject":
-        bpy.ops.wm.open_mainfile(filepath="objectConfigurator/templateFile_singleObject.blend")
+        bpy.ops.wm.open_mainfile(filepath=blend_paths["singleObject"])
         return "singleObject"
 
 
@@ -158,10 +170,16 @@ def renderCamera(renderFileName):
 
 def objectProcess(userGenerated, pregenerated):
     print("uslo u object process")
+    logger.info("uslo u object process")
+    logger.info("ZADNJI OBJEKT OVDJE NESTO DRKA")
+    logger.info(f"TYPE {type(userGenerated)}")
+    logger.info(userGenerated)
     for i in userGenerated:
-        print(i)
+        # logger.info(i)
         userGeneratedfilePath = solveUserGenerated(i, True)
-        print (userGeneratedfilePath)
+        logger.info("PROMJENIT OVOVOVOVOV")
+        logger.info(userGeneratedfilePath)
+        # logger.info(userGeneratedfilePath)
         importObj(userGeneratedfilePath)
         fixTranslationRotation(i)
 
