@@ -1,5 +1,5 @@
 import bpy 
-from objectConfigurator.fileManipulation import getObject
+from objectConfigurator.fileManipulation import solveUserGenerated, solvePregenerated
 import sys
 sys.path.append("/")
 
@@ -141,7 +141,7 @@ def fixTranslationRotation(objectName):
                 
 
                 
-def renderCamera():
+def renderCamera(renderFileName):
     for scene in bpy.data.scenes:
         scene.render.engine = 'CYCLES'
     
@@ -150,19 +150,28 @@ def renderCamera():
     bpy.context.scene.render.image_settings.file_format = "PNG"
 
     
-    bpy.context.scene.render.filepath = '/final_user_output/atest.png'
+    bpy.context.scene.render.filepath = '/final_user_output/' + renderFileName
     bpy.ops.render.render(write_still=True)
 
                 
          
 
-def objectProcess(objectCategories):
-    for i in objectCategories:
+def objectProcess(userGenerated, pregenerated):
+    print("uslo u object process")
+    for i in userGenerated:
         print(i)
-        filePath = getObject(i)
-        print (filePath)
-        importObj(filePath)
+        userGeneratedfilePath = solveUserGenerated(i, True)
+        print (userGeneratedfilePath)
+        importObj(userGeneratedfilePath)
         fixTranslationRotation(i)
+
+    for i in pregenerated:
+        print(i)
+        pregeneratedfilePath = solvePregenerated(i, False)
+        print (pregeneratedfilePath)
+        importObj(pregeneratedfilePath)
+        fixTranslationRotation(i)
+
     
         
         #print("*****processed*******")

@@ -1,57 +1,114 @@
 import sys
 import os
 
-objects_path = "objects_3d/"
+user_objects_path = "objects_3d/user_generated/"
+temp_object_path = "objects_3d/"
+
+#room category lists
+livingRoom = ["lamp", "sofa", "table", "fireplace"]
 
 
 
-
-
-def getChairObject():
+def getChairObject(userGen):
     chairName = "chair_0000.obj"
-    global objects_path
-    for filename in os.listdir(objects_path):
-        if filename == chairName:
-            path = objects_path + chairName
-            
-            return path
+    global user_objects_path
+    global temp_object_path
+    if userGen == True:
+        for filename in os.listdir(user_objects_path):
+            if filename == chairName:
+                path = user_objects_path + chairName
+                
+                return path
+    else:
+        for filename in os.listdir(temp_object_path):
+            if filename == chairName:
+                path = temp_object_path + chairName
+                
+                return path
+
         
 
-def getSofaObject():
+def getSofaObject(userGen):
     sofaName = "sofa_0000.obj"
-    global objects_path
-    for filename in os.listdir(objects_path):
-        if filename == sofaName:
-            path = objects_path + sofaName
-            return path
+    global user_objects_path
+    global temp_object_path
+    if userGen == True:
+        for filename in os.listdir(user_objects_path):
+            if filename == sofaName:
+                path = user_objects_path + sofaName
+                return path
+    else:
+        for filename in os.listdir(temp_object_path):
+            if filename == sofaName:
+                path = temp_object_path + sofaName
+                
+                return path
         
-def getLampObject():
+def getLampObject(userGen):
     lampName = "lamp_0000.obj"
-    global objects_path
-    for filename in os.listdir(objects_path):
-        if filename == lampName:
-            path = objects_path + lampName
-            
-            return path
+    global user_objects_path
+    global temp_object_path
+    if userGen == True:
+        for filename in os.listdir(user_objects_path):
+            if filename == lampName:
+                path = user_objects_path + lampName
+                return path
+    else:
+        print("uslo u lamp else")
+        for filename in os.listdir(temp_object_path):
+            if filename == lampName:
+                path = temp_object_path + lampName
+                
+                return path
         
 
-def getTableObject():
+def getTableObject(userGen):
+    print("uslo u getTable object")
     tableName = "table_0000.obj"
-    global objects_path
-    for filename in os.listdir(objects_path):
-        if filename == tableName:
-            path = objects_path + tableName
-            
-            return path
+    global user_objects_path
+    global temp_object_path
+    if userGen == True:
+        for filename in os.listdir(user_objects_path):
+            if filename == tableName:
+                path = user_objects_path + tableName
+                
+                return path
+    else:
+        for filename in os.listdir(temp_object_path):
+            if filename == tableName:
+                path = temp_object_path + tableName
+                
+                return path
 
-def getFireplaceObject():
-    tableName = "fireplace_0000.obj"
-    global objects_path
-    for filename in os.listdir(objects_path):
-        if filename == tableName:
-            path = objects_path + tableName
+def getFireplaceObject(userGen):
+    fireplaceName = "fireplace_0000.obj"
+    global user_objects_path
+    global temp_object_path
+    if userGen == True:
+        for filename in os.listdir(user_objects_path):
+            if filename == fireplaceName:
+                path = user_objects_path + fireplaceName
+                return path
+    else:
+        for filename in os.listdir(temp_object_path):
+            if filename == fireplaceName:
+                path = temp_object_path + fireplaceName
+                
+                return path
+        
+def itemCategoryCheck(userCategoryList):
+    global livingRoom
+    pregeneratedObjectList = []
+    for i in livingRoom:
+        if i not in userCategoryList:
+            pregeneratedObjectList.append(i)
+        else:
+            continue
+    return pregeneratedObjectList
+
             
-            return path
+
+
 
 
 def getObject(objectCategoryName):
@@ -65,3 +122,43 @@ def getObject(objectCategoryName):
         objectPath = getTableObject()
     
     return objectPath
+
+
+def solveUserGenerated(userGenerated, a):
+    print("uslo u solve user generated")
+    #for i in userGenerated:
+        #print(i + " u solver user generated")
+    if userGenerated == "fireplace":
+        objectPath = getFireplaceObject(a)
+        return objectPath
+    elif userGenerated == "sofa":
+        objectPath = getSofaObject(a)
+        return objectPath
+    elif userGenerated == "lamp":
+        objectPath = getLampObject(a)
+        return objectPath
+    elif userGenerated == "table":
+        objectPath = getTableObject(a)
+        return objectPath
+
+    
+
+def solvePregenerated(pregenerated,a):
+    print("uslo u solver pregenerated")
+    #for i in pregenerated:
+        #print(i)
+    if pregenerated == "fireplace":
+        objectPath = getFireplaceObject(a)
+        return objectPath
+    elif pregenerated == "sofa":
+        objectPath = getSofaObject(a)
+        return objectPath
+    elif pregenerated == "lamp":
+        objectPath = getLampObject(a)
+        return objectPath
+    elif pregenerated == "table":
+        objectPath = getTableObject(a)
+        return objectPath
+
+
+

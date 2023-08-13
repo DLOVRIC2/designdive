@@ -4,18 +4,22 @@ sys.path.append("/")
 
 from objectConfigurator.blenderManipulation import openBlenderTemplateFile, renderCamera, objectProcess
 
-from objectConfigurator.fileManipulation import getObject
+from objectConfigurator.fileManipulation import getObject, itemCategoryCheck
 
 
-categories = ["table","sofa","lamp","fireplace"]
+user_defined_categories = ["table","fireplace"]
+
+
 
 openBlenderTemplateFile("livingroom")
 
+pregenerated = itemCategoryCheck(user_defined_categories)
+print(pregenerated)
 
 #objectPath = getObject(category)
 
 
-objectProcess(categories)
-renderCamera()
+objectProcess(user_defined_categories, pregenerated)
+renderCamera("render_test")
 
 
