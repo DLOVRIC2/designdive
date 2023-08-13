@@ -1,0 +1,28 @@
+/* :root {
+    --color-primary: #059DFF;
+    --color-tertiary: #6549D5;
+    --color-pink: #E33FA1;
+    --color-secondary: #FB5343;
+  }
+.title {
+    font-size: 50px;
+    margin-top: 40px;
+    margin-bottom: 30px;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  .gradient-text {
+    background: linear-gradient(95deg, var(--color-primary) 15%, var(--color-tertiary) 45%, var(--color-pink) 75%, var(--color-secondary) 100%) 98%/200% 100%;
+    text-transform: capitalize;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .body-container{
+    width: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  
+  
+  } */
