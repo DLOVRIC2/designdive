@@ -23,7 +23,6 @@ def getSofaObject():
     for filename in os.listdir(objects_path):
         if filename == sofaName:
             path = objects_path + sofaName
-            print(path)
             return path
         
 def getLampObject():
@@ -45,14 +44,21 @@ def getTableObject():
             
             return path
 
+def getFireplaceObject():
+    tableName = "fireplace_0000.obj"
+    global objects_path
+    for filename in os.listdir(objects_path):
+        if filename == tableName:
+            path = objects_path + tableName
+            
+            return path
 
 
 def getObject(objectCategoryName):
-    if objectCategoryName == "chair":
-        objectPath = getChairObject()
+    if objectCategoryName == "fireplace":
+        objectPath = getFireplaceObject()
     elif objectCategoryName == "sofa":
         objectPath = getSofaObject()
-        print(objectPath)
     elif objectCategoryName == "lamp":
         objectPath = getLampObject()
     elif objectCategoryName == "table":
