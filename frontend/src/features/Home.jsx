@@ -1,16 +1,17 @@
 import React from 'react'
 import Body from './Body'
 import Footer from './Footer'
-import Navb from './Navb'
+import Pricetable from './Pricetable';
+
 
 const Home = () => {
   return (
     <div>
-      <Navb/>
-     <Body/>
-    <Footer/>
+      <Body/>
+      <Pricetable/>
+      <Footer/>
     </div>
   )
 }
 
-export default Home
+export default Home;

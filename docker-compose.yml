@@ -1,32 +1,26 @@
-# docker-compose.yml
 version: '3.8'
 
 services:
   frontend:
-    build: ./frontend
-    dockerfile: Dockerfile
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
     ports:
       - "3000:3000"
     depends_on:
       - backend
+    networks:
+      - mynetwork
 
   backend:
     build: ./backend
     ports:
       - "8000:8000"
-    depends_on:
-      - db
-
-  db:
-    image: "postgres:latest"
+    networks:
+      - mynetwork
     environment:
-      POSTGRES_DB: design_dive_db
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: password
-    volumes:
-      - db_data:/var/lib/postgresql/data
-    ports:
-      - "5432:5432"
+    # TODO: Replace this with dockersecrets or something
+      - REPLICATE_API_PROFILE="yorkey"
 
-volumes:
-  db_data:
+networks:
+  mynetwork:

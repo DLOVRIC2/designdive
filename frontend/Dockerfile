@@ -1,6 +1,9 @@
 # Alpine image
 FROM node:14.16.0-alpine3.13
 
+# Install react-scripts globally
+RUN npm install -g react-scripts
+
 # Create working directory
 WORKDIR /frontend
 
@@ -14,5 +17,5 @@ COPY . .
 # Expose port 3000 for front end
 EXPOSE 3000
 
-# Start the app
-ENTRYPOINT [ "npm", "start" ]
+# Start the app using globally installed react-scripts
+CMD ["react-scripts", "start"]

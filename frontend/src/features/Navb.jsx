@@ -9,13 +9,14 @@ const Navb = () => {
     <div>
       <Navbar bg="light" variant="light" expand="lg">
         <Container>
-          <Navbar.Brand href="#home" className="logo">Designdive</Navbar.Brand>
+          <Navbar.Brand href="/" className="logo">Designdive</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="ms-auto"> {/* This class aligns items to the right */}
               <Nav.Link href="#features">Features</Nav.Link>
               <Nav.Link href="#home">Contact</Nav.Link>
               <Nav.Link href="#pricing">Pricing</Nav.Link>
+              <Nav.Link href="/generate">Generate</Nav.Link>
             </Nav>
             <div className="header-btn"> {/* This class aligns items to the right */}
               <a
