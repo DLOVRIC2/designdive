@@ -1,0 +1,145 @@
+:root {
+    --color-primary: #059DFF;
+    --color-tertiary: #6549D5;
+    --color-pink: #E33FA1;
+    --color-secondary: #FB5343;
+  }
+  body {
+      background: #f7f7ff;
+      font-family: "Montserrat", sans-serif;
+      width: 80%;
+      max-width: 1440px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-x: hidden;
+      
+      
+    }
+    
+    .header {
+      color: hsl(233, 13%, 49%);
+      margin: 3.3rem 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .cards {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    
+    .card {
+      background: #fff;
+      color: hsl(233, 13%, 49%);
+      border-radius: 0.8rem;
+    }
+    
+    .cards .card.active {
+      color: #fff;
+      display: flex;
+      align-items: center;
+      transform: scale(1.1);
+      z-index: 1;
+    }
+    
+    ul {
+      margin: 2.6rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+    }
+    
+    ul li.price {
+      font-size: 3rem;
+      color: hsl(232, 13%, 33%);
+      padding-bottom: 2rem;
+    }
+    
+    .shadow {
+      box-shadow: -5px 5px 15px 1px rgba(0, 0, 0, 0.1);
+    }
+    
+    .card.active .price {
+      color: #fff;
+    }
+    
+    .btn {
+      margin-top: 1rem;
+      height: 2.6rem;
+      width: 13.3rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+    
+    .btn:hover {
+      background: linear-gradient(140deg, #059DFF, #6549D5, #E33FA1);
+      color: #f7f7ff;
+    }
+    
+    .active-btn {
+      background: #fff;
+      color: hsl(237, 63%, 64%);
+    }
+    
+    .bottom-bar {
+      border-bottom: 2px solid hsla(240, 8%, 85%, 0.582);
+    }
+    
+    .card.active .bottom-bar {
+      border-bottom: 2px solid hsla(240, 8%, 85%, 0.253);
+    }
+    
+    .pack {
+      font-size: 1.1rem;
+    }
+  .toggle {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 240px;
+      margin: 0 auto;
+      cursor: pointer;
+    }
+    
+    .toggle input[type="radio"] {
+      display: none;
+    }
+    
+    .toggle label {
+      display: inline-block;
+      width: 45%;
+      text-align: center;
+      padding: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    
+    .toggle label:hover {
+      background: linear-gradient(140deg, #059DFF, #6549D5, #E33FA1);
+  
+    }
+    
+    .toggle input[type="radio"]:checked + label {
+      background: linear-gradient(140deg, #E33FA1, #6549D5, #059DFF);
+      color: white;
+    }
+    .status {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 18px;
+    }
+    
+    
