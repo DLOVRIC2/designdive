@@ -1,0 +1,47 @@
+:root {
+  --color-primary: #059DFF;
+  --color-tertiary: #6549D5;
+  --color-pink: #E33FA1;
+  --color-secondary: #FB5343;
+}
+.navbar.sticky {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding-left: 0; /* Remove left padding */
+  padding-right: 0;
+  }
+
+
+.logo{
+
+  background: linear-gradient(95deg, var(--color-primary) 15%, var(--color-tertiary) 45%, var(--color-pink) 75%, var(--color-secondary) 100%) 98%/200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+         
+.btn-grad {
+  background-image: linear-gradient(to right, #7948cd, #fb5343,#f24c69);
+  margin: 15px;
+  padding: 9px 17px;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: background-position 0.5s, color 0.5s; 
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 20px #eee;
+  border-radius: 20px;
+  display: inline-block; 
+  font-size: x-small;
+}
+
+.btn-grad:hover {
+  background-image: linear-gradient(to right, hsl(262, 57%, 54%), hsl(5, 96%, 62%));
+  background-position: 100% center; 
+  color: #fff;
+  text-decoration: none;
+}
+
+  
