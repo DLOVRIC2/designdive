@@ -7,11 +7,13 @@ import logging
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import Body
 from typing import List
+from subprocess import run
+# from blender.test import BlenderRender
 
 
 current_path = os.path.dirname(__file__)
 blender_path = os.path.join(current_path, "blender")
-user_download_path = os.path.join(blender_path, "final_user_output")
+user_download_path = os.path.join(blender_path, "final_user_output", "render_test.png")
 
 
 app = FastAPI()
@@ -37,10 +39,16 @@ tasks = {}
 def process_task(prompt, task_id):
     logger.info("I'm about to start this generator")
     generator = ReplicateObjectGenerator()
-    print(prompt)
-    generator.generate_user_files(prompt)
+    # generator.generate_user_files(prompt)
+    logger.info("Finished creating all the 3D models. Moving onto rendering in blender.")
 
-    # TODO: We need to add blender processing here
+    ## SAVE INPUTS
+    try:
+        blender_command = ["blender", "--background", "--python", "blender/test.py"]
+        run(blender_command)
+    except Exception as e:
+        logger.info("WHOOOOOOOPS")
+        logger.info(e)
 
     tasks[task_id]['status'] = 'completed'
     tasks[task_id]['result'] = user_download_path
