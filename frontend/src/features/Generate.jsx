@@ -42,6 +42,7 @@ const Generate = () => {
 
   const handleGenerateClick = async () => {
     const promptValue = promptText; // Or whatever value you want to send as the prompt
+    console.log('Starting request to generate with prompt:', promptValue);
     try {
       const response = await fetch('http://backend:8000/start_task/', {
         method: 'POST',
@@ -51,6 +52,7 @@ const Generate = () => {
         body: JSON.stringify({ prompt: promptValue }),
       });
       const result = await response.json();
+      console.log('Received response from backend:', result);
       if (result.status === 'success') {
         // Save the task ID if you need it for later, e.g., to check the task's status
         const taskId = result.task_id;
@@ -126,12 +128,11 @@ const Generate = () => {
               onChange={(e) => setPromptText(e.target.value)}
               placeholder="Enter your prompt..."
             />
+            <button className="generate-button" onClick={handleGenerateClick}>
+             Generate
+            </button>
           </div>
         )}
-
-        <button className="generate-button" onClick={handleGenerateClick}>
-          Generate
-        </button>
 
         {isGenerated && (
         <div className="generated-section">

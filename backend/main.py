@@ -3,6 +3,7 @@ from fastapi.responses import FileResponse
 from generate_objects import ReplicateObjectGenerator
 import time
 import os
+import logging
 
 current_path = os.path.dirname(__file__)
 blender_path = os.path.join(current_path, "blender")
@@ -10,6 +11,8 @@ user_download_path = os.path.join(blender_path, "final_user_output")
 
 
 app = FastAPI()
+logger = logging.getLogger("uvicorn")
+
 
 tasks = {}
 
@@ -24,9 +27,11 @@ def process_task(prompt, task_id):
 
 @app.post("/start_task/")
 async def start_task(prompt: str, background_tasks: BackgroundTasks):
+    logger.info(f"Received start_task request with prompt: {prompt}")
     task_id = str(len(tasks))
     tasks[task_id] = {'status': 'running'}
     background_tasks.add_task(process_task, prompt, task_id)
+    logger.info(f"Started task with ID: {task_id}")
     return {"status": "success", "task_id": task_id}
 
 @app.get("/task_status/{task_id}")
