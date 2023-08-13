@@ -213,3 +213,8 @@ height: 100px; /* Adjust the height as needed for the desired space */
   align-items: center;
   justify-content: center;
 }
+
+.loading-section {
+  align-items: center;
+  justify-content: center;
+}
