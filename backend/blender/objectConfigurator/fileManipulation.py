@@ -1,13 +1,15 @@
 import sys
 import os
 
-user_objects_path = "objects_3d/user_generated/"
-temp_object_path = "objects_3d/"
+user_objects_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "objects_3d", "user_generated") + "/"
+temp_object_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "objects_3d") + "/"
+
+import logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 #room category lists
 livingRoom = ["lamp", "sofa", "table", "fireplace"]
-
-
 
 def getChairObject(userGen):
     chairName = "chair_0000.obj"
@@ -25,8 +27,6 @@ def getChairObject(userGen):
                 path = temp_object_path + chairName
                 
                 return path
-
-        
 
 def getSofaObject(userGen):
     sofaName = "sofa_0000.obj"
@@ -54,7 +54,6 @@ def getLampObject(userGen):
                 path = user_objects_path + lampName
                 return path
     else:
-        print("uslo u lamp else")
         for filename in os.listdir(temp_object_path):
             if filename == lampName:
                 path = temp_object_path + lampName
@@ -63,7 +62,6 @@ def getLampObject(userGen):
         
 
 def getTableObject(userGen):
-    print("uslo u getTable object")
     tableName = "table_0000.obj"
     global user_objects_path
     global temp_object_path
@@ -71,7 +69,6 @@ def getTableObject(userGen):
         for filename in os.listdir(user_objects_path):
             if filename == tableName:
                 path = user_objects_path + tableName
-                
                 return path
     else:
         for filename in os.listdir(temp_object_path):
@@ -106,9 +103,6 @@ def itemCategoryCheck(userCategoryList):
             continue
     return pregeneratedObjectList
 
-            
-
-
 
 
 def getObject(objectCategoryName):
@@ -125,9 +119,6 @@ def getObject(objectCategoryName):
 
 
 def solveUserGenerated(userGenerated, a):
-    print("uslo u solve user generated")
-    #for i in userGenerated:
-        #print(i + " u solver user generated")
     if userGenerated == "fireplace":
         objectPath = getFireplaceObject(a)
         return objectPath
