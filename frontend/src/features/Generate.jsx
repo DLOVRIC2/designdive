@@ -14,6 +14,9 @@ const Generate = () => {
   const [showPromptInput, setShowPromptInput] = useState(false);
   const [promptText, setPromptText] = useState('');
   const [prompts, setPrompts] = useState({}); // Object to store prompts for each item
+  const [renderedImage, setRenderedImage] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+
 
 
   const handleSceneSelection = (scene) => {
@@ -84,14 +87,22 @@ const Generate = () => {
   
   useEffect(rotateFunFacts, [funFactIndex]); // Run rotateFunFacts when funFactIndex changes
 
-
+  // To pass back to the API
+  const selectedItems = Object.keys(prompts);
+  const ROOM_TYPE_MAPPING = {
+    "Office Space": "office",
+    "Living Room": "livingroom",
+    "Bedroom": "bedroom"
+  };
 
   const selectedSceneName = SCENE_NAMES[selectedScene] || '-';
   const items = SCENE_ITEMS[selectedSceneName] || [];
+  const roomTypeValue = ROOM_TYPE_MAPPING[selectedSceneName];
 
   const [isGenerated, setIsGenerated] = useState(false);
 
   const handleGenerateClick = async () => {
+    setIsLoading(true); // Set loading state
     const promptValues = Object.values(prompts); // Convert prompts object to an array
 
     console.log('Starting request to generate with prompts:', promptValues);
@@ -101,15 +112,29 @@ const Generate = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(promptValues),
+        // body: JSON.stringify(promptValues),
+        body: JSON.stringify({
+          prompts: promptValues,
+          user_defined_categories: selectedItems,
+          room_type: roomTypeValue
+        }),
+
       });
       const result = await response.json();
       console.log('Received response from backend:', result);
       if (result.status === 'success') {
         // Save the task ID if you need it for later, e.g., to check the task's status
         const taskId = result.task_id;
-        setIsGenerated(true);
-        // You might also want to start polling the task status endpoint to get updates on the task
+        const pollInterval = setInterval(async () => {
+          const statusResponse = await fetch(`http://localhost:8000/task_status/${taskId}`);
+          const statusResult = await statusResponse.json();
+          if (statusResult.status === 'completed') {
+            clearInterval(pollInterval);
+            setRenderedImage(statusResult.result); // Set the rendered image URL
+            setIsGenerated(true);
+            setIsLoading(false); // Reset loading state
+          }
+        }, 1000); // Poll every second
       } else {
         // Handle any error from the server
         console.error('Error starting task', result);
@@ -119,6 +144,21 @@ const Generate = () => {
       console.error('Error making request to start task', error);
     }
   };
+  
+  function downloadImage() {
+    fetch('http://localhost:8000/static/render_test.png')
+      .then(response => response.blob())
+      .then(blob => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'render_test.png';
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+      });
+  }
+  
 
 
   return (
@@ -197,20 +237,22 @@ const Generate = () => {
           ))}
         </div>
 
-        {isGenerated && (
-        <div className="generated-section">
+        {isLoading && (
+          <div className="loading-section">
             <p>Don't worry, we are making your models. Here are some fun facts while you are waiting!</p>
             <div className="loading-container">
               <ReactLoading type={"cubes"} color={"#333"} height={'100%'} width={'100%'} />
             </div>    
             <div className="fun-fact-container">
-            <p>{funFacts[funFactIndex]}</p> {/* Display the fun fact here */}
-            </div>        
-            <div className="generated-image-container">
-            <img src={img1} alt="Generated Preview" />
-            </div>
-            <button className="download-button">Download</button>
-        </div>
+              <p>{funFacts[funFactIndex]}</p>
+            </div> 
+          </div>
+        )}
+        {renderedImage && (
+          <div className="generated-image-container">
+            <img src={renderedImage} alt="Generated Preview" />
+            <button className="download-button" onClick={downloadImage}>Download</button>
+          </div>
         )}
 
         <div className="empty-space"></div>
