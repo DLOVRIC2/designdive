@@ -7,9 +7,9 @@ from objectConfigurator.blenderManipulation import openBlenderTemplateFile, rend
 from objectConfigurator.fileManipulation import getObject
 
 
-category = "chair"
+category = "sofa"
 
-openBlenderTemplateFile("singleObject")
+openBlenderTemplateFile("livingroom")
 objectPath = getObject(category)
 objectProcess(objectPath, category)
 renderCamera()

@@ -25,12 +25,42 @@ def importObj(filePath):
     
 
 def fixTranslationRotation(objectName):
-    print(objectName)
-    objectName = objectName[:-4]
+
     for ob in bpy.data.objects:
+
         if ob.name.startswith(objectName):
+            
             ob.rotation_euler = (0,0,0)
+           
             ob.location[2] = ob.dimensions.z/2
+
+            bpy.context.view_layer.objects.active = ob
+            ob.select_set(True)
+
+            bpy.ops.object.origin_set(type='ORIGIN_CURSOR', center='MEDIAN')
+
+            getObjectLocRot(objectName)
+
+
+
+
+def getObjectLocRot(objectCategory):
+    for ob in bpy.data.objects:
+        print(ob.name + "111")
+        if ob.type == "EMPTY":
+            if ob.name.startswith(objectCategory):
+                print(ob.name + "lalalala")
+                
+            else:
+                print("nest cudno")
+        else:
+            print("not empty object")
+            
+
+
+
+            
+
             
 
 def objectProcess(filePath, objectName):
@@ -47,10 +77,10 @@ def renderCamera():
     bpy.context.scene.render.resolution_y = 1080
     bpy.context.scene.render.image_settings.file_format = "PNG"
 
-    print("1")
+
     bpy.context.scene.render.filepath = '/final_user_output/atest.png'
     bpy.ops.render.render(write_still=True)
-    print("a")
+
    
    
 
