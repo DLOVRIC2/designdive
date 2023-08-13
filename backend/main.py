@@ -8,17 +8,24 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi import Body
 from typing import List
 from subprocess import run
+from pydantic import BaseModel
+import json
+from fastapi.staticfiles import StaticFiles
+
 # from blender.test import BlenderRender
 
 
 current_path = os.path.dirname(__file__)
 blender_path = os.path.join(current_path, "blender")
 user_download_path = os.path.join(blender_path, "final_user_output", "render_test.png")
-
+user_input_save_path = os.path.join(current_path, "blender", "user_input", "user_input.json")
+user_input_save_folder = os.path.join(current_path, "blender", "user_input")
+final_user_output_path = os.path.join(blender_path, "final_user_output")
 
 app = FastAPI()
 logger = logging.getLogger("uvicorn")
 
+app.mount("/static", StaticFiles(directory=final_user_output_path), name="static")
 
 origins = [
     "http://localhost",
@@ -36,13 +43,27 @@ app.add_middleware(
 
 tasks = {}
 
-def process_task(prompt, task_id):
+class StartTaskRequest(BaseModel):
+    prompts: List[str]
+    user_defined_categories: List[str]
+    room_type: str
+
+def process_task(prompts, user_defined_categories, room_type, task_id):
     logger.info("I'm about to start this generator")
     generator = ReplicateObjectGenerator()
-    # generator.generate_user_files(prompt)
+    generator.generate_user_files(prompts, user_defined_categories)
     logger.info("Finished creating all the 3D models. Moving onto rendering in blender.")
 
     ## SAVE INPUTS
+    params = {
+        "user_defined_categories": user_defined_categories,
+        "room_type": [room_type]
+    }
+    with open(user_input_save_path, "w") as f:
+        json.dump(params, f)
+
+    logger.info(f"These are the params I've saved {params}")
+        
     try:
         blender_command = ["blender", "--background", "--python", "blender/test.py"]
         run(blender_command)
@@ -51,14 +72,14 @@ def process_task(prompt, task_id):
         logger.info(e)
 
     tasks[task_id]['status'] = 'completed'
-    tasks[task_id]['result'] = user_download_path
+    tasks[task_id]['result'] = f'http://localhost:8000/static/render_test.png'
 
 @app.post("/start_task/")
-async def start_task(background_tasks: BackgroundTasks, prompts: List[str] = Body(...)):
-    logger.info(f"Received start_task request with prompts: {prompts}")
+async def start_task(background_tasks: BackgroundTasks, requests: StartTaskRequest):
+    logger.info(f"Received start_task request with prompts: {requests.prompts}")
     task_id = str(len(tasks))
     tasks[task_id] = {'status': 'running'}
-    background_tasks.add_task(process_task, prompts, task_id)
+    background_tasks.add_task(process_task, requests.prompts, requests.user_defined_categories, requests.room_type, task_id)
     logger.info(f"Started task with ID: {task_id}")
     return {"status": "success", "task_id": task_id}
 
