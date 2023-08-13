@@ -13,8 +13,8 @@ current_directory = os.path.dirname(__file__)
 user_input_path = os.path.join(current_directory, "user_input", "user_input.json")
 with open(user_input_path, "r") as f:
     params = json.load(f)
- 
-user_defined_categories = params["user_defined_categories"]
+
+user_defined_categories = [item.lower() for item in params["user_defined_categories"]]
 room_category = params["room_type"]
 logger.info(f"User defined categories loaded in are: {user_defined_categories}")
 logger.info(f"User defined room type loaded in is: {room_category}")
