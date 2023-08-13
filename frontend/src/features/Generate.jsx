@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import ReactLoading from 'react-loading';
 import './Style/Generate.css';
 import img1 from '../images/img1.png';
 import img2 from '../images/img2.png';
@@ -47,6 +48,43 @@ const Generate = () => {
     "Bedroom": ["Bed", "Nightstand", "Lamp", "Closet"],
     "Office Space": ["Desk", "Chair", "Bookshelf", "Plant"],
   };
+
+
+  // Array of fun facts
+  const funFacts = [
+    'The first 3D printer was created in the mid-1980s by Chuck Hull.',
+    '3D modeling can be used in various industries, including film, architecture, healthcare, and video games.',
+    'The term "polygon" in 3D modeling refers to a flat, two-dimensional shape with straight sides.',
+    '3D modeling software like Blender, Maya, and 3ds Max are widely used by professionals in the field.',
+    '3D printing technology has been used to create everything from prosthetic limbs to food!',
+    'Architects use 3D modeling to visualize buildings and structures before they are constructed.',
+    '3D models can be textured, allowing them to have realistic surfaces with details like color, roughness, and bumpiness.',
+    'Virtual Reality (VR) and Augmented Reality (AR) often rely on 3D models to create immersive experiences.',
+    '3D modeling can involve different techniques, such as sculpting, polygonal modeling, and parametric modeling.',
+    '3D scanners can capture real-world objects and convert them into digital 3D models.',
+    'Subdivision surface modeling is a technique used to create smooth organic shapes from simple geometric forms.',
+    'Medical professionals use 3D modeling to create accurate models of organs for surgical planning and education.',
+    '3D models can be exported to various file formats, such as OBJ, FBX, and STL.',
+    'Reverse engineering involves creating 3D models from existing physical objects through scanning and analysis.',
+    '3D modeling has revolutionized the prototyping process, allowing rapid iteration and testing of product designs.'
+]
+
+  // State to keep track of the current fun fact index
+  const [funFactIndex, setFunFactIndex] = useState(0);
+
+  const rotateFunFacts = () => {
+    const intervalId = setInterval(() => {
+      // Remove the if condition or check some other valid condition
+      const newIndex = (funFactIndex + 1) % funFacts.length;
+      setFunFactIndex(newIndex); // Update the fun fact index
+    }, 5000); // Set a reasonable time interval like 5000ms (5 seconds)
+  
+    return () => clearInterval(intervalId); // Clear interval when component is unmounted
+  };
+  
+  useEffect(rotateFunFacts, [funFactIndex]); // Run rotateFunFacts when funFactIndex changes
+
+
 
   const selectedSceneName = SCENE_NAMES[selectedScene] || '-';
   const items = SCENE_ITEMS[selectedSceneName] || [];
@@ -161,6 +199,13 @@ const Generate = () => {
 
         {isGenerated && (
         <div className="generated-section">
+            <p>Don't worry, we are making your models. Here are some fun facts while you are waiting!</p>
+            <div className="loading-container">
+              <ReactLoading type={"cubes"} color={"#333"} height={'100%'} width={'100%'} />
+            </div>    
+            <div className="fun-fact-container">
+            <p>{funFacts[funFactIndex]}</p> {/* Display the fun fact here */}
+            </div>        
             <div className="generated-image-container">
             <img src={img1} alt="Generated Preview" />
             </div>
