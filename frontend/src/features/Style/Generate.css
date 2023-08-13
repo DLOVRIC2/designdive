@@ -1,11 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Caprasimo&display=swap');
 .generate-container {
     padding: 20px;
     text-align: center;
   }
+  .title{
+    font-family: 'Caprasimo', cursive;
+    font-weight: lighter;
+  }
 
 .gradient-paragraph {
     font-size: 26px;
-    font-weight: bold;
+    font-weight: normal;
     text-align: center;
     margin: 20px 0;
   }
@@ -72,22 +77,26 @@ margin: 20px 0;
 }
 
 .scene-selected {
-    font-size: 24px; 
+    font-size: 20px; 
     display: flex;
     align-items: center;
+    font-family: 'Caprasimo', cursive;
+    color: #f1d3fa;
+    font-weight: lighter;
   }
   
 .selected-label {
-    font-weight: bold;
+    font-family: 'Caprasimo', cursive;
+    color: rgb(63, 59, 59);
+    font-weight: lighter;
     }
   
 .selected-scene {
-  
-    border: 3px solid linear-gradient(140deg, #059DFF, #6549D5, #E33FA1);; /* Example: yellow border for selection */
-  box-shadow: 0px 0px 10px rgba(255, 255, 0, 0.7);
-  background-color: #f5dced;
+  margin-right: 5px;
   animation: bounce 0.5s ease infinite;
   transition: border 0.3s, box-shadow 0.3s;
+  font-family: 'Caprasimo', cursive;
+    color: linear-gradient(95deg, var(--color-primary) 15%, var(--color-tertiary) 45%, var(--color-pink) 75%, var(--color-secondary) 100%) 98%/200% 100%;
   }
   @keyframes bounce {
     0%, 100% {
@@ -167,6 +176,10 @@ color: var(--color-primary);
     max-width: 300px; 
     margin-bottom: 10px;
   }
+h4{
+  font-family: 'Caprasimo', cursive;
+  color: rgb(58, 55, 55);
+}
 
 
   /* When the user clicks generate, we have a split screen */
@@ -224,4 +237,8 @@ background-color: #882169;
 
 .empty-space {
 height: 100px;
+}
+h3{
+  font-weight: lighter;
+  color: rgb(51, 50, 50);
 }
