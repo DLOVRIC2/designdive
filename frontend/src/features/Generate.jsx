@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import './Generate.css';
+import './Style/Generate.css';
 import img1 from '../images/img1.png';
 import img2 from '../images/img2.png';
 import img3 from '../images/img3.png';
