@@ -46,13 +46,13 @@ class ReplicateObjectGenerator:
             input={"prompt": prompt, "save_mesh": True}
         )
 
-    def _process_object(self, item: str, save_path: str):
+    def _process_object(self, item: str, new_name:str, save_path: str):
         """Runs the api call to generate object and downloads the .obj file in a folder for blender processing"""
         output = self._generate_object(item)
         logger.info(f"Sucessfully generated {item}")
         
         # Create a valid file name
-        valid_name = re.sub(r'[^a-zA-Z0-9]', '_', item.lower()) + "_0000"
+        valid_name = new_name.lower() + "_0000"
         logger.info("Saved it under the name {valid_name}")
 
         self.generated_objects[valid_name] = {"gif": output[0], "obj": output[1]}
@@ -84,13 +84,14 @@ class ReplicateObjectGenerator:
 
         logger.info(f"Generated objects saved to {json_file_path}")
 
-    def generate_user_files(self, prompts: List[str]):
+    def generate_user_files(self, prompts: List[str], user_defined_categories: List[str]):
         """Generates an object """
 
         logger.info(f"Received a total of {len(prompts)} prompts.")
         if len(prompts) != 0:
-            for prompt in prompts:
-                self._process_object(prompt, save_path=self.user_gen_dir)
+            for i, prompt in enumerate(prompts):
+                selected_object = user_defined_categories[i]
+                self._process_object(prompt, selected_object, save_path=self.user_gen_dir)
 
                 json_file_path = os.path.join(self.root_dir, "generated_objects.json")
 
