@@ -1,0 +1,44 @@
+.container {
+    padding: 3rem;
+    font-family: Arial, sans-serif;
+    
+  }
+
+
+  .title {
+    font-size: 2.5rem;
+    font-weight: bold;
+  }
+  
+  .gradient-text {
+    background: linear-gradient(95deg, #059DFF 15%, #6549D5 45%, #E33FA1 75%, #FB5343 100%) 98%/200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .text-secondary {
+    color: #6c757d;
+  }
+  
+  .btn-grad {
+    background-image: linear-gradient(to right, #7948cd, #fb5343, #f24c69);
+    transition: background-position 0.5s, color 0.5s;
+    background-size: 200% auto;
+    color: white;
+    text-transform: uppercase;
+  }
+  
+  .btn-grad:hover {
+    background-position: 100% center;
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  /* Styles for smaller screens (Optional) */
+  @media (max-width: 768px) {
+    .title {
+      font-size: 2rem;
+    }
+  }
+  
