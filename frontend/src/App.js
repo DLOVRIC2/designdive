@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./features/Home";
 import Generate from "./features/Generate"; // Import the Generate component
 import Navb from "./features/Navb"; // Import the Navb component
+import Blank from './features/Blank'
 
 function App() {
   return (
@@ -12,6 +13,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/generate" element={<Generate />} />
+          <Route path="/blank" element={<Blank />} />
+
         </Routes>
       </div>
     </Router>
