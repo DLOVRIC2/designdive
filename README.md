@@ -8,7 +8,7 @@
 
 ### Prerequisites
 
-To run DesignDive, you need:
+To run DesignDive, you need
 
 - Docker (https://www.docker.com/products/docker-desktop)
 - Docker Compose, which is included with Docker Desktop for Mac and Windows, but needs to be installed separately for Linux (https://docs.docker.com/compose/install/)
@@ -49,9 +49,9 @@ To stop the application, use the command `docker-compose down`.
 
 ### Troubleshooting
 
-If you face any issues, check:
+If you face any issues, check
 
-- Your Docker version: Ensure that your Docker version is up-to-date.
-- Dockerfile paths: Ensure the paths specified in the `docker-compose.yml` are correct.
+- Your Docker version Ensure that your Docker version is up-to-date.
+- Dockerfile paths Ensure the paths specified in the `docker-compose.yml` are correct.
 
 ---
