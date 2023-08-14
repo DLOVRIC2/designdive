@@ -2,7 +2,7 @@
 
 ## DesignDive Application
 
-![image](https://github.com/DLOVRIC2/designdive/assets/66421606/e99d9554-b666-446d-9da5-b3c562ef419c)
+![image](https://github.com/DLOVRIC2/designdive/assets/66421606/43d1709c-7db5-4098-b8dd-7a206f4fc959)
 
 
 Part of the Lablab.ai 3D AI Hackathon challange
