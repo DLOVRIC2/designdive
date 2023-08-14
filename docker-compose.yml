@@ -21,9 +21,15 @@ services:
       - "8000:8000"
     networks:
       - mynetwork
+    volumes:
+      - ./backend/blender/final_user_output:/final_user_output
+
+    env_file:
+      - ./.env
     environment:
-    # TODO: Replace this with dockersecrets or something
-      - REPLICATE_API_PROFILE="yorkey"
+      - REPLICATE_API_TOKEN=${REPLICATE_API_TOKEN}
+
+
 
 networks:
   mynetwork:
