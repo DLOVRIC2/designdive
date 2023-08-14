@@ -11,9 +11,9 @@ from subprocess import run
 from pydantic import BaseModel
 import json
 from fastapi.staticfiles import StaticFiles
-
-# from blender.test import BlenderRender
-
+from starlette.middleware.base import BaseHTTPMiddleware
+from starlette.responses import Response
+from fastapi import HTTPException
 
 current_path = os.path.dirname(__file__)
 blender_path = os.path.join(current_path, "blender")
@@ -25,11 +25,12 @@ final_user_output_path = os.path.join(blender_path, "final_user_output")
 app = FastAPI()
 logger = logging.getLogger("uvicorn")
 
-app.mount("/static", StaticFiles(directory=final_user_output_path), name="static")
 
 origins = [
     "http://localhost",
     "http://localhost:3000",
+    "http://localhost:8000",
+
 ]
 
 app.add_middleware(
@@ -42,6 +43,22 @@ app.add_middleware(
 
 
 tasks = {}
+
+class CustomCORSMiddleware(BaseHTTPMiddleware):
+    async def dispatch(self, request, call_next):
+        response = await call_next(request)
+
+        # Check if the request is for a static file
+        if request.url.path.startswith("/static"):
+            response.headers["Access-Control-Allow-Origin"] = "http://localhost:3000"
+            response.headers["Access-Control-Allow-Methods"] = "GET"
+            response.headers["Access-Control-Allow-Headers"] = "*"
+
+        return response
+
+app.add_middleware(CustomCORSMiddleware)
+app.mount("/static", StaticFiles(directory=final_user_output_path), name="static")
+
 
 class StartTaskRequest(BaseModel):
     prompts: List[str]
