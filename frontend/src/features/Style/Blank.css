@@ -1,0 +1,32 @@
+.blank-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .blank-container h2 {
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .blank-container ul {
+    color: #555;
+  }
+  
+  .blank-container p {
+    margin: 20px 0;
+  }
+  
+  .create-link {
+    text-decoration: underline;
+    color: #007bff;
+  }
+
+.image-container {
+    display: flex;
+    height: 500px;
+}
+  
