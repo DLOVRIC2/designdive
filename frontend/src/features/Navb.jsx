@@ -1,4 +1,5 @@
 import React from "react";
+import './Style/navbar.css'
 import "bootstrap/dist/css/bootstrap.min.css";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
@@ -13,9 +14,6 @@ const Navb = () => {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="ms-auto"> {/* This class aligns items to the right */}
-              <Nav.Link href="#features">Features</Nav.Link>
-              <Nav.Link href="#home">Contact</Nav.Link>
-              <Nav.Link href="#pricing">Pricing</Nav.Link>
               <Nav.Link href="/generate">Generate</Nav.Link>
             </Nav>
             <div className="header-btn"> {/* This class aligns items to the right */}
