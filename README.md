@@ -17,7 +17,7 @@ To run DesignDive, you need:
 
 ### Getting Started
 
-Follow these steps to get VoiceUp up and running:
+Follow these steps to get VoiceUp up and running
 
 1. **Clone the repository**
    ```
