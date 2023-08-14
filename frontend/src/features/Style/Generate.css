@@ -18,12 +18,20 @@
     -webkit-text-fill-color: transparent;
   }
   
-  
-  
-  
 .underline-link {
-text-decoration: underline;
+  text-decoration: none;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  display: inline-block;
 }
+
+.underline-link:hover {
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+}
+
 
 .scene {
     display: flex;
@@ -32,7 +40,6 @@ text-decoration: underline;
     margin: 0 10px; 
   }
   
-
 .scene-selection {
     font-size: 18px;
     display: flex;
@@ -44,19 +51,24 @@ text-decoration: underline;
 .scene-box {
     width: 450px; /* Increase the width */
     height: 450px; /* Increase the height */
-    border: 6px solid var(--color-primary);
     padding: 0; /* Removed padding */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: all 0.3s;
     border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s, box-shadow 0.3s, transform 0.3s; /* Add transform to the transition */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Update shadow to be a bit softer */
 
   }
-  
+
+.scene-box:hover {
+    transform: scale(1.05); /* Add slight scaling on hover */
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
+}
+
+
 .scene-box img {
 width: 100%;
 height: 100%; /* Updated to fill the entire box */
@@ -64,10 +76,36 @@ border-radius: 10px; /* Optional, to round the corners */
 }
   
 .scene-box.selected {
-background-color: var(--color-primary);
-color: white;
-border: 3px solid var(--color-primary); /* Add a border when selected */
+  background-color: var(--color-primary);
+  color: white;
+  box-shadow: 0 0 20px 5px var(--color-pink); /* Adds a soft glow around the box */
+  position: relative;
+}
 
+.scene-box.selected::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  bottom: -10px;
+  left: -10px;
+  z-index: -1;
+  background: linear-gradient(95deg, var(--color-primary) 15%, var(--color-tertiary) 45%, var(--color-pink) 75%, var(--color-secondary) 100%);
+  border-radius: inherit;
+  opacity: 0.6;
+}
+
+.scene-box.selected::after {
+  content: "";
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  bottom: -5px;
+  left: -5px;
+  z-index: -1;
+  background: linear-gradient(95deg, var(--color-secondary) 15%, var(--color-pink) 45%, var(--color-tertiary) 75%, var(--color-primary) 100%);
+  border-radius: inherit;
+  opacity: 0.3;
 }
 
 .scene-description {
@@ -118,8 +156,6 @@ text-decoration: underline;
 color: var(--color-primary); /* Optional, to use the primary color */
 }
 
-
-
 .items-container {
     display: flex;
     justify-content: center;
@@ -132,19 +168,47 @@ color: var(--color-primary); /* Optional, to use the primary color */
     padding: 10px;
     border: none;
     cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .item-button.selected {
-    background-color: #e0e0e0;
-  }
-  
-  .prompt-container {
-    margin-top: 20px;
-  }
-  
+    transition: background-color 0.3s, transform 0.3s; 
+    width: 150px; /* Adjust as needed */
+    height: 40px; /* Adjust as needed */
+    text-align: center;
+    display: flex; /* Use flexbox to center content */
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Prevents text overflow */
 
+  }
 
+.item-button:hover {
+  background-color: #d0d0d0; /* Slightly darker shade on hover */
+  transform: scale(1.05); /* Slightly scaled on hover */
+}
+
+.item-button.selected {
+  background-color: #e0e0e0;
+}
+
+.prompt-container {
+  margin-top: 20px;
+}
+
+.prompt-input {
+  width: 60%; /* Takes full width of the container */
+  padding: 10px; /* Adds some space inside the text area */
+  border: 1px solid #ccc; /* Sets a border */
+  border-radius: 5px; /* Rounds the corners */
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1); /* Adds a soft shadow */
+  transition: border-color 0.3s, box-shadow 0.3s; /* Adds transition for smooth effect on focus */
+  resize: vertical; /* Allows vertical resizing */
+
+}
+
+.prompt-input:focus {
+  border-color: var(--color-primary); /* Changes border color on focus */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Increases shadow on focus */
+}
+  
+  
   /* When the user clicks generate, we have a split screen */
 
 .generate-button {
@@ -215,6 +279,132 @@ height: 100px; /* Adjust the height as needed for the desired space */
 }
 
 .loading-section {
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.coming-soon {
+  font-size: 12px;
+  color: #888;
+}
+
+
+.text-box {
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.text-box:focus {
+  border-color: var(--color-primary); /* Assuming you have a variable for your primary color */
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+}
+
+
+.selected-prompts {
+  padding: 20px; /* Add padding */
+  border-radius: 10px; /* Add rounded corners */
+}
+
+.prompt-item {
+  margin: 10px 0; /* Add some margin between items */
+  font-size: 18px; /* Adjust the font size */
+  font-weight: bold; /* Make the text bold */
+}
+
+.generate-button {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background: linear-gradient(95deg, var(--color-primary) 15%, var(--color-tertiary) 45%, var(--color-pink) 75%, var(--color-secondary) 100%); /* Apply gradient */
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s; /* Add box-shadow to the transition */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Add shadow */
+  border-radius: 10px; /* Add rounded corners */
+}
+
+.generate-button:hover {
+  background: linear-gradient(95deg, var(--color-secondary) 15%, var(--color-pink) 45%, var(--color-tertiary) 75%, var(--color-primary) 100%); /* Change gradient on hover */
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
+}
+
+
+.comment-container .comment-under-design {
+  font-style: italic; /* Make the text italic */
+  font-size: 12px; /* Reduce the font size */
+  font-weight: normal; /* Unbold the text */
+  color: #666; /* You can change the color to a lighter shade if desired */
+  margin-top: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.columns-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.column {
+  flex: 1;
+  padding: 20px;
+  text-align: center; /* Center the text */
+}
+
+.column-heading {
+  margin-bottom: 20px;
+}
+
+.column-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center the content vertically */
+  justify-content: center; /* Center the content horizontally */
+}
+
+.coming-soon2 {
+  font-style: italic;
+  color: #666;
+  margin-top: 10px;
 }
