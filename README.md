@@ -1,6 +1,4 @@
 ---
-DesignDive Team for Lablab.ai Hackathon!
-
 ## DesignDive Application
 
 ![image](https://github.com/DLOVRIC2/designdive/assets/66421606/43d1709c-7db5-4098-b8dd-7a206f4fc959)
