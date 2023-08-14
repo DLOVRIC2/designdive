@@ -1,8 +1,10 @@
 import React from 'react'
+import './Style/footer.css'
 //**Bootstrape Imports */
 import 'bootstrap/dist/css/bootstrap.min.css';
 //**React-Feather Icons */
 import { Facebook, GitHub,Youtube,Linkedin,Instagram,Twitter } from 'react-feather';
+
 
 
 const Footer = () => {
