@@ -49,6 +49,8 @@
     }
     
     ul {
+      height: 500px; /* Adjust this value based on your design */
+
       margin: 2.6rem;
       display: flex;
       flex-direction: column;
