@@ -36,3 +36,10 @@
     transform: rotate(360deg);
   }
 }
+
+body {
+  background: linear-gradient(135deg, #e8f5e9 0%, #e8f5e9 25%, transparent 25%, transparent 75%, #e8f5e9 75%, #e8f5e9 100%),
+            linear-gradient(-45deg, #f3dbe3 0%, #f3dbe3 25%, transparent 25%, transparent 75%, #f3dbe3 75%, #f3dbe3 100%),
+            linear-gradient(to left, #f3dbe3, #ffffff, #caedfd); /* Gradient on the sides */
+  background-blend-mode: normal, normal, normal, multiply; /* Apply blending mode for gradient overlap */
+}
