@@ -2,8 +2,15 @@ Prerequisites
 To run DesignDive, you need:
 
 Docker (https://www.docker.com/products/docker-desktop)
+
 Docker Compose, which is included with Docker Desktop for Mac and Windows, but needs to be installed separately for Linux (https://docs.docker.com/compose/install/)
+
 Git (https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+
+You will also need to get a replicate API key to run the OpenAI Shap-e model. You can get your key here:
+https://replicate.com/
+
+
 Getting Started
 Follow these steps to get DesignDive up and running:
 
