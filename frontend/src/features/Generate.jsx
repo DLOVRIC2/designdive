@@ -30,7 +30,8 @@ const Generate = () => {
     setShowPromptInput(true);
   };
 
-  const handlePromptSubmit = () => {
+  const handlePromptSubmit = (e) => {
+    e.preventDefault();
     // Add the current prompt to the prompts object
     setPrompts({
       ...prompts,
@@ -130,7 +131,8 @@ const Generate = () => {
           const statusResult = await statusResponse.json();
           if (statusResult.status === 'completed') {
             clearInterval(pollInterval);
-            setRenderedImage(statusResult.result); // Set the rendered image URL
+            const imageUrl = `${statusResult.result}?timestamp=${new Date().getTime()}`;
+            setRenderedImage(imageUrl);
             setIsGenerated(true);
             setIsLoading(false); // Reset loading state
           }
@@ -146,18 +148,28 @@ const Generate = () => {
   };
   
   function downloadImage() {
-    fetch('http://localhost:8000/static/render_test.png')
-      .then(response => response.blob())
-      .then(blob => {
-        const url = window.URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'render_test.png';
-        document.body.appendChild(a);
-        a.click();
-        window.URL.revokeObjectURL(url);
-      });
+    if (renderedImage) { // Check if the renderedImage is available
+      fetch(renderedImage)
+        .then(response => response.blob())
+        .then(blob => {
+          const url = window.URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = 'rendered_image.png'; // You can name the file as you like
+          document.body.appendChild(a);
+          a.click();
+          window.URL.revokeObjectURL(url);
+        })
+        .catch(error => {
+          console.error('Error downloading image:', error);
+          // Optionally, provide user feedback if download fails
+        });
+    } else {
+      console.log('No rendered image to download');
+      // Optionally, provide user feedback if no image is available
+    }
   }
+  
   
 
 
@@ -168,29 +180,33 @@ const Generate = () => {
       </h1>
 
       <h3>
-        <strong>Please choose a scene to place your object or</strong>{' '}
-        <Link to="/blank" className="underline-link">start a blank project</Link>.
+        <strong>Please choose a scene to place your object or</strong>{''}
+        <Link to="/blank" className="underline-link">start a blank project</Link>
       </h3>
+
       <div className="scene-selection">
-        <div className="scene">
-            <div className={`scene-box ${selectedScene === 1 ? 'selected' : ''}`} onClick={() => handleSceneSelection(1)}>
-            <img src={img1} alt='Scene 1' />
+        {[
+          { scene: 1, name: "Living Room", image: img1 },
+          { scene: 2, name: "Bedroom", image: img2, comingSoon: true },
+          { scene: 3, name: "Office Space", image: img3, comingSoon: true },
+        ].map(({ scene, name, image, comingSoon }) => (
+          <div className="scene" key={scene}>
+            <div
+              className={`scene-box ${selectedScene === scene ? "selected" : ""} ${
+                comingSoon ? "disabled" : ""
+              }`}
+              onClick={() => !comingSoon && handleSceneSelection(scene)}
+            >
+              <img src={image} alt={`Scene ${scene}`} />
             </div>
-            <div className='scene-text'>Scene 1: Living Room</div>
-        </div>
-        <div className="scene">
-            <div className={`scene-box ${selectedScene === 2 ? 'selected' : ''}`} onClick={() => handleSceneSelection(2)}>
-            <img src={img2} alt='Scene 2' />
+            <div className="scene-text">
+              Scene {scene}: {name}
+              {comingSoon && <div className="coming-soon">Coming soon</div>}
             </div>
-            <div className='scene-text'>Scene 2: Bedroom</div>
-        </div>
-        <div className="scene">
-            <div className={`scene-box ${selectedScene === 3 ? 'selected' : ''}`} onClick={() => handleSceneSelection(3)}>
-            <img src={img3} alt='Scene 3' />
-            </div>
-            <div className='scene-text'>Scene 3: Office Space</div>
-        </div>
-    </div>
+          </div>
+        ))}
+      </div>
+
 
         <div className="scene-selected">
             <span className="selected-label">Selected:</span>
@@ -198,6 +214,9 @@ const Generate = () => {
         </div>
 
         <h4>What would you like to redesign?</h4>
+        <div className="comment-container"> 
+        <p className="comment-under-design">(You can specify multiple objects at once)</p>
+      </div>
         <div className="items-container">
           {items.map((item) => (
             <button
@@ -211,21 +230,20 @@ const Generate = () => {
         </div>
 
         {showPromptInput && (
-          <div className="prompt-container">
-            <label htmlFor="prompt-input">Enter your prompt for {selectedItem}:</label>
+        <div className="prompt-container">
+          <label htmlFor="prompt-input">Enter your prompt for {selectedItem}:</label>
+          <form onSubmit={handlePromptSubmit}> {/* Add a form with an onSubmit handler */}
             <input
+              className="prompt-input"
               type="text"
               id="prompt-input"
               value={promptText}
               onChange={(e) => setPromptText(e.target.value)}
               placeholder="Enter your prompt..."
             />
-            <button onClick={handlePromptSubmit}>Enter</button>
-            <button className="generate-button" onClick={handleGenerateClick}>
-              Generate
-            </button>
-          </div>
-        )}
+          </form>
+        </div>
+      )}
 
         <div className="selected-prompts">
           <h4>Selected Prompts:</h4>
@@ -235,29 +253,56 @@ const Generate = () => {
               <span>{prompt}</span>
             </div>
           ))}
+          <button className="generate-button" onClick={handleGenerateClick}>
+            Generate
+          </button>
         </div>
 
-        {isLoading && (
-          <div className="loading-section">
-            <p>Don't worry, we are making your models. Here are some fun facts while you are waiting!</p>
-            <div className="loading-container">
-              <ReactLoading type={"cubes"} color={"#333"} height={'100%'} width={'100%'} />
-            </div>    
-            <div className="fun-fact-container">
-              <p>{funFacts[funFactIndex]}</p>
-            </div> 
-          </div>
-        )}
-        {renderedImage && (
-          <div className="generated-image-container">
-            <img src={renderedImage} alt="Generated Preview" />
-            <button className="download-button" onClick={downloadImage}>Download</button>
-          </div>
-        )}
 
-        <div className="empty-space"></div>
-        
+      <div className="columns-container">
+        <div className="column">
+          <h4 className="column-heading">Apply custom materials</h4>
+          <div className="column-content">
+            <div className="loading-container">
+              <ReactLoading type={"balls"} color={"#333"} height={'100%'} width={'100%'} />
+            </div>
+            <div className="coming-soon2">Coming soon</div>
+          </div>
+        </div>
+        <div className="column">
+          <h4 className="column-heading">Modify shadows and lighting</h4>
+          <div className="column-content">
+            <div className="loading-container">
+              <ReactLoading type={"cylon"} color={"#333"} height={'100%'} width={'100%'} />
+            </div>
+            <div className="coming-soon2">Coming soon</div>
+          </div>
+        </div>
+      </div>
+
+
+      {isLoading && (
+        <div className="loading-section">
+          <p>Don't worry, we are making your models. Here are some fun facts while you are waiting!</p>
+          <div className="loading-container">
+            <ReactLoading type={"cubes"} color={"#333"} height={'100%'} width={'100%'} />
+          </div>    
+          <div className="fun-fact-container">
+            <p>{funFacts[funFactIndex]}</p>
+          </div> 
+        </div>
+      )}
+      {renderedImage && (
+        <div className="generated-image-container">
+          <img src={renderedImage} alt="Rendered Image" key={renderedImage} />
+          <button className="download-button" onClick={downloadImage}>Download .png</button>
+        </div>
+      )}
+
+      <div className="empty-space"></div>
+    
     </div>
+        
   );
 };
 
