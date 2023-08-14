@@ -20,11 +20,11 @@ To run DesignDive, you need
 
 ### Getting Started
 
-Follow these steps to get VoiceUp up and running
+Follow these steps to get DesignDive up and running
 
 1. **Clone the repository**
    ```
-   git clone https://github.com/DLOVRIC2/voiceup
+   git clone https://github.com/DLOVRIC2/designdive
    ```
 
 2. **Navigate to the repository directory**
