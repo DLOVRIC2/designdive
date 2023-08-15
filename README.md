@@ -32,16 +32,12 @@ Follow these steps to get DesignDive up and running
    cd designdive
    ```
 
-3. **Build the Docker images**
-   ```
-   docker-compose build
-   ```
-4. **Export your key to local session**
+3. **Export your key to local session**
    ```
    export REPLICATE_API_TOKEN=you_api_key
    ```
 
-5. **Start the Docker containers**
+4. **Start the Docker containers**
    ```
    docker-compose up --build
    ```
